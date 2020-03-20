@@ -7,9 +7,10 @@
         @open="handleOpen"
         @close="handleClose"
         text-color="#fffffb"
+        :router="true"
       >
-        <el-menu-item index="1">
-          <template slot="title">
+        <el-menu-item index="/dashboard">
+          <template slot="title" :click="updateDashboard">
             <i class="el-icon-location"></i>
             <span>首页</span>
           </template>
@@ -20,10 +21,10 @@
             <span>任务管理</span>
           </template>
           <el-menu-item-group style="background-color:#5586FE">
-            <el-menu-item index="1-1">任务列表</el-menu-item>
+            <el-menu-item index="/taskList">任务列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-        <el-menu-item index="3">
+        <el-menu-item index="3" disabled>
           <i class="el-icon-document"></i>
           <span slot="title">报告管理</span>
         </el-menu-item>
@@ -38,10 +39,14 @@ import { generateTitle } from '@/utils/i18n'
 export default {
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath)
+
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath)
+      console.log(keyPath)
+    },
+    updateDashboard() {
+      console.log('dadsa')
+      this.$router.push({ path: '/dashboard' })
     }
   }
 }

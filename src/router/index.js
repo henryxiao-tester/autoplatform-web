@@ -35,11 +35,6 @@ export const constantRouterMap = [{
     hidden: true
   },
   {
-    path: '/authredirect',
-    component: _import('dashboard/pages/authredirect'),
-    hidden: true
-  },
-  {
     path: '/404',
     component: _import('dashboard/pages/404'),
     hidden: true
@@ -50,26 +45,33 @@ export const constantRouterMap = [{
     hidden: true
   },
   {
+    path: '/taskList',
+    component: _import('taskManager/pages/taskList'),
+    hidden: true
+  },
+  {
     path: '',
     component: Layout,
     redirect: 'login',
     children: [{
-      path: 'dashboard',
-      component: _import('dashboard/pages/dashboard'),
-      name: 'dashboard',
-      meta: {
-        title: 'dashboard',
-        icon: 'dashboard',
-        noCache: true
+        path: 'dashboard',
+        component: _import('dashboard/pages/dashboard'),
+        name: 'dashboard',
+        meta: {
+          title: 'dashboard',
+          icon: 'dashboard',
+          noCache: true
+        }
+      },
+      {
+        path: 'login',
+        component: _import('dashboard/pages/login'),
+        name: 'login',
+        meta: {
+          noCache: true
+        }
       }
-    }, {
-      path: 'login',
-      component: _import('dashboard/pages/login'),
-      name: 'login',
-      meta: {
-        noCache: true
-      }
-    }]
+    ]
   }
 ]
 
@@ -95,7 +97,6 @@ router.beforeEach((to, from, next) => {
     next()
     NProgress.done() // if current page is login will not trigger afterEach hook, so manually handle it
   }
-
 })
 
 /**
