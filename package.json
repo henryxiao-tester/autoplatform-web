@@ -1,7 +1,7 @@
 {
-  "name": "itheima-admin",
+  "name": "autoplatform",
   "version": "1.0.0",
-  "description": "黑马Admin 管理系统基础模板",
+  "description": "al自动化测试平台",
   "author": "taoshiwei <taoshiwei@itcast.cn>",
   "private": true,
   "scripts": {

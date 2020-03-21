@@ -167,7 +167,7 @@ export default {
         /**
          * get请求方式
          */
-        //   this.$axios.get(baseUrl.dev + baseInterface.login).then(res => {
+        //   this.$axios.get(baseUrl.domain + baseInterface.login).then(res => {
         //     if (res.data.code === 200) {
         //       this.$router.push({ path: '/dashboard' })
         //     } else {
@@ -182,7 +182,7 @@ export default {
         /**
          * post请求方式
          */
-        this.$axios.post(baseUrl.dev + baseInterface.login, {
+        this.$axios.post(baseUrl.domain + baseInterface.login, {
           userName: this.loginForm.username,
           password: this.loginForm.password
         }).then(res => {

@@ -37,3 +37,17 @@ export default {
     return node.children
   }
 }
+
+/**
+ * 制定全局校验输入框为空或为空格字符串方法
+ * @param {传入值string} value
+ * return true 表示为空或空字符串
+ */
+
+export const inputDataCheck = function (value) {
+  var len = value.split(' ').join('').length
+  if (len === 0 || value === null || value === '') {
+    return true
+  }
+  return false
+}

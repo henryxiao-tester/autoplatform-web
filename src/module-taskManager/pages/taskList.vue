@@ -1,75 +1,19 @@
 <template>
   <div class="dashboard-container">
-    <div class="app-container">
-      <el-card shadow="never">
-        <!--elementui的table组件
-          data：数据模型
-        -->
-        <el-table :data="dataList" border style="width: 100%">
-          <!--el-table-column : 构造表格中的每一列
-              prop： 数组中每个元素对象的属性名
-          -->
-          <el-table-column fixed type="index" label="序号" width="50"></el-table-column>
-          <el-table-column fixed prop="name" label="用例模块"></el-table-column>
-          <el-table-column fixed prop="version" label="功能模块" width="150"></el-table-column>
-          <el-table-column fixed prop="legalRepresentative" label="header参数" width="150"></el-table-column>
-          <el-table-column fixed prop="companyPhone" label="body" width="150"></el-table-column>
-          <!-- <el-table-column fixed prop="companyArea" label="所在地区" width="150"></el-table-column> -->
-          <el-table-column fixed prop="expirationDate" label="执行时间" width="150"></el-table-column>
-          <el-table-column fixed prop="expirationDate" label="结束时间" width="150"></el-table-column>
-          <el-table-column v-model="res" fixed label="执行结果" width="150">
-            <!--scope:传递当前行的所有数据 -->
-            <!-- <template slot-scope="scope"> -->
-            <!--开关组件
-                  active-value：激活的数据值
-                  active-color：激活的颜色
-                  inactive-value：未激活
-                  inactive-color：未激活的颜色
-            -->
-            <!-- <el-switch
-                v-model="scope.row.state"
-                inactive-value="0"
-                active-value="1"
-                disabled
-                active-color="#13ce66"
-                inactive-color="#ff4949"
-            ></el-switch>-->
-            <!-- </template> -->
-          </el-table-column>
-          <el-table-column fixed="right" label="操作" width="150">
-            <template slot-scope="scope">
-              <router-link :to="'/saas-clients/details/'+scope.row.id">查看</router-link>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-card>
-    </div>
+    <div class="app-container">{{ massage }}</div>
   </div>
 </template>
 
 <script>
-import { list } from '@/api/base/saasClient'
 export default {
-  name: 'saas-clients-index',
   data() {
     return {
-      dataList: [],
-      res: 'pass'
+      massage: '欢迎使用自动化测试平台'
     }
   },
-  methods: {
-    getList() {
-      // 调用API发起请求
-      // res=响应数据
-      list().then(res => {
-        this.dataList = res.data.data
-      })
-    }
-  },
+  methods: {},
   // 创建完毕状态
-  created() {
-    this.getList()
-  }
+  created() { }
 }
 </script>
 
