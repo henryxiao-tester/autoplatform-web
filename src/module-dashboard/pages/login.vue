@@ -74,6 +74,7 @@ import shajs from 'sha.js'
 import router from 'vue-router'
 import { Message } from 'element-ui'
 import { baseUrl, baseInterface } from '../../mock/mockconfig.js'
+import { userLoginData } from '../../utils/common'
 
 export default {
 
@@ -188,6 +189,12 @@ export default {
         }).then(res => {
           if (res.data.code === 200) {
             this.$router.push({ path: '/dashboard' })
+            userLoginData.id = res.data.id
+            userLoginData.userName = res.data.userName
+            userLoginData.password = res.data.password
+            userLoginData.role = res.data.role
+            userLoginData.userNick = res.data.userNick
+            userLoginData.createTime = res.data.createTime
           } else {
             var errorInfo = res.data.message
             this.openError(errorInfo)

@@ -29,6 +29,7 @@ export const constantRouterMap = [{
     component: _import('dashboard/pages/login'),
     hidden: true
   },
+
   {
     path: '/reg',
     component: _import('dashboard/pages/reg'),
@@ -44,11 +45,6 @@ export const constantRouterMap = [{
     component: _import('dashboard/pages/401'),
     hidden: true
   },
-  // {
-  //   path: '//taskList',
-  //   component: _import('taskManager/pages/taskList'),
-  //   hidden: true
-  // },
   {
     path: '',
     component: Layout,
@@ -70,6 +66,16 @@ export const constantRouterMap = [{
         meta: {
           noCache: true
         }
+      },
+      {
+        path: 'personalCenter',
+        component: _import('dashboard/pages/personalCenter'),
+        name: '个人中心',
+        meta: {
+          title: '个人中心',
+          icon: 'dashboard',
+          noCache: true
+        }
       }
     ]
   },
@@ -79,19 +85,10 @@ export const constantRouterMap = [{
     redirect: '',
     children: [{
       path: 'taskList',
-      component: _import('taskManager/pages/index'),
+      component: _import('task-manager/pages/index'),
       name: '任务列表',
       meta: {
         title: '任务列表',
-        icon: 'dashboard',
-        noCache: true
-      }
-    }, {
-      path: 'detail',
-      component: _import('taskManager/pages/detail'),
-      name: '任务详情',
-      meta: {
-        title: '任务详情',
         icon: 'dashboard',
         noCache: true
       }

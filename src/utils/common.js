@@ -51,3 +51,13 @@ export const inputDataCheck = function (value) {
   }
   return false
 }
+
+// 登录获取到的公共数据
+export const userLoginData = {
+  id: '',
+  userName: '',
+  password: '',
+  role: '',
+  userNick: '',
+  createTime: ''
+}

@@ -24,28 +24,23 @@
         </transition>
       </div>
       <!-- 使用文档 -->
-      <a href="http://itheimaadmin.itcast.cn/book/help" class="item" target="_blank">
+      <a
+        href="http://wiki.al.com/pages/viewpage.action?pageId=38307958"
+        class="item"
+        target="_blank"
+      >
         <el-tooltip class="item" effect="dark" content="使用文档" placement="bottom">
           <i class="el-icon-question"></i>
         </el-tooltip>
       </a>
       <!-- 错误 -->
       <error-log class="error item"></error-log>
-      <!-- 全屏 -->
-      <!-- <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="bottom">
-        <screenfull class="item" style="color:#fff;"></screenfull>
-      </el-tooltip>-->
-      <!-- 多语言 -->
       <lang-select class="item"></lang-select>
-      <!-- 换肤 -->
-      <!-- <el-tooltip effect="dark" :content="$t('navbar.theme')" placement="bottom">
-        <theme-picker class="item"></theme-picker>
-      </el-tooltip>-->
       <!-- 用户信息 -->
       <el-dropdown class="item">
         <span class="el-dropdown-link">
           <img class="avatar" src="../assets/bigUserHeader.png" />
-          {{name}}
+          {{userNick}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -55,11 +50,11 @@
           <!-- <a target="_blank" href="https://github.com/itheima2017/vue-element-admin-itheima">
             <el-dropdown-item>{{$t('navbar.github')}}</el-dropdown-item>
           </a>-->
-          <router-link to="/personal">
-            <el-dropdown-item>个人中心</el-dropdown-item>
-          </router-link>
+          <el-dropdown-item>
+            <span @click="personalCenter">个人中心</span>
+          </el-dropdown-item>
           <el-dropdown-item divided>
-            <span @click="logout" style="display:block;">{{$t('navbar.logOut')}}</span>
+            <span @click="logout" style="display:block;">退出登录</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -76,6 +71,7 @@ import Screenfull from '@/components/Screenfull'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemePicker'
 import { search } from '@/api/base/menus'
+import { userLoginData } from '../../utils/common'
 
 export default {
   name: 'layoutNavBar',
@@ -95,19 +91,20 @@ export default {
       searchVal: '',
       timeout: null,
       showSearchInput: false,
-      restaurants: []
+      restaurants: [],
+      userNick: 'sdsada'
     }
   },
   methods: {
+    personalCenter() {
+      this.$router.push({ path: '/personalCenter' })
+    },
     toggleSideBar() {
       this.$store.dispatch('toggleSideBar')
     },
     logout() {
       this.$router.push({ path: '/login' })
       location.reload()
-      // this.$store.dispatch('FedLogOut').then(() => {
-      //   location.reload() // In order to re-instantiate the vue-router object to avoid bugs
-      // })
     },
     handleBtnSearch() {
       this.showSearchInput = !this.showSearchInput
@@ -145,6 +142,7 @@ export default {
   },
   mounted() {
     this.restaurants = search()
+    this.userNick = userLoginData.userNick
   }
 }
 </script>

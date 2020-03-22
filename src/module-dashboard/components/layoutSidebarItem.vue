@@ -29,6 +29,10 @@
           <i class="el-icon-document"></i>
           <span slot="title">报告管理</span>
         </el-menu-item>
+        <el-menu-item index="/personalCenter">
+          <i class="el-icon-setting"></i>
+          <span slot="title">个人中心</span>
+        </el-menu-item>
       </el-menu>
     </el-col>
   </div>

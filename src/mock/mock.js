@@ -31,9 +31,12 @@ Mock.mock(baseUrl.domain + baseInterface.login, 'post', data => {
     code: 200,
     message: 'success',
     data: [{
-      username: 'henry',
+      id: '23213211121321',
+      userName: 'henry',
       password: '123456',
-      age: 18
+      role: 1,
+      userNick: '我是测试',
+      createTime: '2020-03-22'
     }]
   }
 })
@@ -76,6 +79,41 @@ Mock.mock(baseUrl.domain + baseInterface.updateTaskDataByName, 'post', data => {
 
 // 修改任务列表中的数据
 Mock.mock(baseUrl.domain + baseInterface.deleteTaskData, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
+
+// 执行任务列表中的数据
+Mock.mock(baseUrl.domain + baseInterface.excuteTask, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
+
+// 修改个人中心信息
+Mock.mock(baseUrl.domain + baseInterface.getUserInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: {
+      id: '3242342311',
+      userName: 'henry',
+      password: 'sadsadsa',
+      role: 1,
+      userNick: '肖龙',
+      createTime: '2020-03-22'
+    }
+  }
+})
+
+// 修改个人中心信息
+Mock.mock(baseUrl.domain + baseInterface.updateUserInfo, 'post', data => {
   const info = JSON.parse(data.body)
   return {
     code: 200,

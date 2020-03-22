@@ -22,9 +22,8 @@
           <el-table-column fixed="right" label="操作">
             <template slot-scope="scope">
               <el-button type="text" @click=" handleUpdate(scope.row)">修改</el-button>
-
-              <!-- <el-button @click="handleUpdate(scope.row)" type="text">修改</el-button> -->
               <el-button @click="handleDelete(scope.row)" type="text">删除</el-button>
+              <el-button @click="handleExcute(scope.row)" type="text">执行</el-button>
             </template>
             <!-- <template slot-scope="scope">
               <router-link :to="'/saas-clients/details/'+scope.row.id">删除</router-link>
@@ -66,13 +65,11 @@ import { inputDataCheck } from '../../utils/common'
 import { baseUrl, baseInterface } from '../../mock/mockconfig.js'
 
 export default {
-  name: 'saas-clients-index',
 
   data() {
     return {
       dataList: [],
-      res: 'pass',
-      input: 'dsadsa',
+      input: '',
       dialogTableVisible: false,
       dialogFormVisible: false,
       form: {
@@ -153,10 +150,18 @@ export default {
         if (action === 'confirm') {
           this.$axios.post(baseUrl.domain + baseInterface.deleteTaskData, {
             taskId: data.taskId
-          })
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
+          }).then(res => {
+            if (res.data.code === 200) {
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              })
+            } else {
+              this.$message({
+                type: 'info',
+                message: '请求异常'
+              })
+            }
           })
           /**
          * 删除成功后更新列表
@@ -167,6 +172,41 @@ export default {
             this.dataList = res.data.data
           })
         }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
+    /**
+     * 执行任务
+     */
+    handleExcute(data) {
+      this.$confirm('是否执行该条任务?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then((action) => {
+        if (action === 'confirm') {
+          this.$axios.post(baseUrl.domain + baseInterface.excuteTask, {
+            taskId: data.taskId
+          }).then(res => {
+            if (res.data.code === 200) {
+              this.$message({
+                type: 'success',
+                message: '执行成功!'
+              })
+            } else {
+              this.$message({
+                type: 'info',
+                message: '请求异常'
+              })
+            }
+          })
+
+        }
+
       }).catch(() => {
         this.$message({
           type: 'info',

@@ -20,5 +20,11 @@ export const baseInterface = {
   getTaskList: '/task/taskList',
   getTaskDataByName: '/task/getTaskDataByName',
   updateTaskDataByName: '/task/updateTaskDataByName',
-  deleteTaskData: '/task/deleteTaskData'
+  deleteTaskData: '/task/deleteTaskData',
+  excuteTask: '/task/deleteTaskData',
+  /**
+   * 修改个人信息
+   */
+  updateUserInfo: '/personal/updateUserInfo',
+  getUserInfo: '/personal/getUserInfo'
 }
