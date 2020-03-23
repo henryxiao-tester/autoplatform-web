@@ -23,8 +23,16 @@ export const baseInterface = {
   deleteTaskData: '/task/deleteTaskData',
   excuteTask: '/task/deleteTaskData',
   /**
-   * 修改个人信息
+   * 个人中心
    */
   updateUserInfo: '/personal/updateUserInfo',
-  getUserInfo: '/personal/getUserInfo'
+  getUserInfo: '/personal/getUserInfo',
+  /**
+   * 用例管理
+   */
+  getCaseSuiteInfo: '/caseManager/getCaseSuiteInfo',
+  addCase: '/caseManager/addCase',
+  updateCaseInfo: '/caseManager/updateCaseInfo',
+  getCaseInfo: '/caseManager/getCaseInfo'
+
 }

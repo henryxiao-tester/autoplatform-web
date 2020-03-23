@@ -4,9 +4,6 @@
       <el-card shadow="never">
         <el-tabs v-model="activeName">
           <el-tab-pane label="企业信息" name="first">
-            <!--form表单
-                      model ： 双向绑定的数据对象
-            -->
             <el-form ref="form" :model="formData" label-width="400px">
               <el-form-item label="企业名称">
                 <el-input v-model="formData.name" style="width:350px" disabled></el-input>

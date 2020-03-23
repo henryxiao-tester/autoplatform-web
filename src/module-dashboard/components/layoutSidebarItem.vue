@@ -25,6 +25,10 @@
             <el-menu-item index="/task/taskList">任务列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
+        <el-menu-item index="/case-manager/caseList">
+          <i class="el-icon-setting"></i>
+          <span slot="title">用例管理</span>
+        </el-menu-item>
         <el-menu-item index="/dashboard">
           <i class="el-icon-document"></i>
           <span slot="title">报告管理</span>

@@ -4,7 +4,9 @@ import {
   baseInterface
 } from './mockconfig'
 import {
-  mockTaskList
+  mockTaskList,
+  getCaseSuiteInfo,
+  getCaseInfoList
 } from './mockdata'
 
 const Random = Mock.Random
@@ -118,5 +120,42 @@ Mock.mock(baseUrl.domain + baseInterface.updateUserInfo, 'post', data => {
   return {
     code: 200,
     message: 'success'
+  }
+})
+
+/**
+ * 用例管理
+ */
+Mock.mock(baseUrl.domain + baseInterface.getCaseSuiteInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: getCaseSuiteInfo()
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.updateCaseInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.addCase, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.getCaseInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: getCaseInfoList()
   }
 })

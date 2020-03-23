@@ -25,9 +25,6 @@
               <el-button @click="handleDelete(scope.row)" type="text">删除</el-button>
               <el-button @click="handleExcute(scope.row)" type="text">执行</el-button>
             </template>
-            <!-- <template slot-scope="scope">
-              <router-link :to="'/saas-clients/details/'+scope.row.id">删除</router-link>
-            </template>-->
           </el-table-column>
         </el-table>
         <el-button :plain="true" @click="openWarning" v-show="false"></el-button>

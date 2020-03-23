@@ -93,6 +93,21 @@ export const constantRouterMap = [{
         noCache: true
       }
     }]
+  },
+  {
+    path: '/case-manager',
+    component: Layout,
+    redirect: '',
+    children: [{
+      path: 'caseList',
+      component: _import('case-manager/pages/index'),
+      name: '用例管理',
+      meta: {
+        title: '用例管理',
+        icon: 'dashboard',
+        noCache: true
+      }
+    }]
   }
 ]
 

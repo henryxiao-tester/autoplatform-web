@@ -19,8 +19,6 @@ import axios from 'axios'
  * 注册 - 业务模块
  */
 import dashboard from '@/module-dashboard/' // 面板
-import caseManager from '@/module-case-manager/' // 用例管理
-import caseTest from '@/module-case-test/'
 
 import tools from './utils/common.js'
 Vue.prototype.$tools = tools
@@ -28,8 +26,6 @@ Vue.prototype.$axios = axios
 
 Vue.use(tools)
 Vue.use(dashboard, store)
-Vue.use(caseManager, store)
-Vue.use(caseTest, store)
 
 /*
  * 注册 - 组件

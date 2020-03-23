@@ -9,16 +9,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '',
-    proxyTable: {
-      //企业信息请求的远程服务
-      // '/api/company': {
-      //   target: 'http://localhost:9001/company/',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/api/company': ''
-      //   }
-      // }
-    },
+    proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
