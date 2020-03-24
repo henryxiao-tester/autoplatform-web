@@ -7,12 +7,9 @@
       text-color="#bfcbd9"
       class="sidebarBg"
     >
-      <router-link to="/">
+      <router-link to="/dashboard">
         <div class="sidebar-logo">
-          <img src="../assets/logo.png" style="width: 100px;border-radius: 10px" />
-        </div>
-        <div class="sidebar-logo-mini">
-          <img src="../assets/logo.png" />
+          <img src="../assets/al_logo.png" style="width: 100px;height:70px;border-radius: 20px" />
         </div>
       </router-link>
       <sidebar-item :routes="permission_routers"></sidebar-item>

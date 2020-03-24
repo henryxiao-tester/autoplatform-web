@@ -29,7 +29,7 @@
           <i class="el-icon-setting"></i>
           <span slot="title">用例管理</span>
         </el-menu-item>
-        <el-menu-item index="/dashboard">
+        <el-menu-item index="/report-manager/reportList">
           <i class="el-icon-document"></i>
           <span slot="title">报告管理</span>
         </el-menu-item>

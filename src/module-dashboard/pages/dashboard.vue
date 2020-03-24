@@ -37,68 +37,16 @@
           <div class="advContent">
             <div class="title">测试操作通知</div>
             <div class="contentItem">
-              <ul class="noticeList">
+              <ul class="noticeList" v-for="(item,key) in datas.slice(0,6)" :key="key">
                 <li>
                   <div class="item">
-                    <img src="./../../assets/img.jpeg" alt />
+                    <img
+                      src="static/img/head.31237df.png"
+                      style="width:30px;height:30px;border-radius:50%"
+                    />
                     <div>
                       <p>
-                        <span class="col">xxx</span> 执行了接口自动化测试
-                      </p>
-                      <p>2018-07-21 15:21:38</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item">
-                    <img src="./../../assets/img.jpeg" alt />
-                    <div>
-                      <p>
-                        <span class="col">xxx</span> 发布了新的测试用例
-                      </p>
-                      <p>2018-07-21 15:21:38</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item">
-                    <img src="./../../assets/img.jpeg" alt />
-                    <div>
-                      <p>
-                        <span class="col">xxx</span> 更改了用户模块测试用例
-                      </p>
-                      <p>2018-07-21 15:21:38</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item">
-                    <img src="./../../assets/img.jpeg" alt />
-                    <div>
-                      <p>
-                        <span class="col">xxx</span> 发布了新的测试用例
-                      </p>
-                      <p>2018-07-21 15:21:38</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item">
-                    <img src="./../../assets/img.jpeg" alt />
-                    <div>
-                      <p>
-                        <span class="col">xxx</span> 发布了新的测试用例
-                      </p>
-                      <p>2018-07-21 15:21:38</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item">
-                    <img src="./../../assets/img.jpeg" alt />
-                    <div>
-                      <p>
-                        <span class="col">xxx</span> 发布了新的测试用例
+                        <span class="col">{{item.operator+item.description}}</span>
                       </p>
                       <p>2018-07-21 15:21:38</p>
                     </div>
@@ -123,13 +71,13 @@
             <!-- </ul> -->
             <ul class="clearfix">
               <li>
-                <a href="#">用例管理</a>
+                <a href="/#/case-manager/caseList">用例管理</a>
               </li>
               <li>
-                <a href="#">任务管理</a>
+                <a href="/#/task/taskList">任务列表</a>
               </li>
               <li>
-                <a href="#">Email管理</a>
+                <a href="/#/personalCenter">个人中心</a>
               </li>
               <li>
                 <a href="#">报告管理</a>
@@ -142,7 +90,7 @@
         </el-card>
         <el-card class="box-card" style="margin-top:20px;">
           <div slot="header" class="header">
-            <span>最新报告视图</span>
+            <span>最新报告视图 - 待二期开发</span>
           </div>
           <div class="sidePerformance">
             <div class="chart">
@@ -179,22 +127,22 @@
           <div class="sideLink">
             <el-row>
               <el-col :span="8">
-                <a href="#">
+                <a
+                  href="http://wiki.al.com/pages/viewpage.action?token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjUzYzY2YWFiNTBjZmRkOTFhMTQzNTBhNjY0ODJkYjM4MDBjODNjNjMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODg2Mzk4OTQzNjI2LXRiMjltamNnOTYxMGduZmwxbm1qb2N1bjY5dWViaHJmLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiODg2Mzk4OTQzNjI2LXRiMjltamNnOTYxMGduZmwxbm1qb2N1bjY5dWViaHJmLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAwNTcxODM1MzM2MDQyNzkxMTM0IiwiaGQiOiJha3VsYWt1LmNvbSIsImVtYWlsIjoieGlhb2xvbmdAYWt1bGFrdS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6ImR6SWdzN1dkSE5EYU5ncjU2SFRhUlEiLCJuYW1lIjoi6IKW6b6ZIiwicGljdHVyZSI6Imh0dHBzOi8vbGg1Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tZG8xNW1vYjkzRTQvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQUtGMDVuQmRJZXJYejBmU3I2R0RYV1c2TDJBRS1PSGN6dy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi6b6ZIiwiZmFtaWx5X25hbWUiOiLogpYiLCJsb2NhbGUiOiJlbiIsImlhdCI6MTU4NTAzODExMSwiZXhwIjoxNTg1MDQxNzExLCJqdGkiOiIxMzMxNDgzOTg1Y2RlM2FmN2YwZDMyMDcwMDBiMmNkNWZhZDNmOGY1In0.QGVlzPH4Y6qpa3U777eC3_rj9RXSW0V22_Phg4FD2o1-Ph-VwET29tLjzUPUW0XsqbzaiB-GKfCVC9iQub62Ls9b4J1QeOrW0-oz0-Rb9mswiCykG1fnK2TfP4_3OM4TxZkRm4E_AmaEiwoe8He9lGcgM7IwTF7YpWTKwK21njzq2h-28mowPQ00IX8gBgxeSjUOjloDKth7t6TnlQQ_rX-6pRwFydyYnzfkhLoCLJd2vFnG2tVea4X1zQFuqBgmM88rW3ZFPNVbJdwEdwdMaEBJC-OO1P2znNU_f4vrdm9qFqnxt3Zgmvf72K9mluRHgf2H-NE2bCO1fhPjxKjAsw&pageId=38307958"
+                >
                   <span class="icon iconGuide"></span>
-                  <p>入门指南</p>
+                  <p>操作手册</p>
                 </a>
               </el-col>
               <el-col :span="8">
-                <a href="#">
+                <a href="http://testyapi.akulaku.com/project/1132/interface/api">
                   <span class="icon iconHelp"></span>
-                  <p>在线帮助手册</p>
+                  <p>相关接口文档</p>
                 </a>
               </el-col>
               <el-col :span="8">
-                <a href="#">
-                  <span class="icon iconTechnology"></span>
-                  <p>联系技术支持</p>
-                </a>
+                <span class="icon iconTechnology"></span>
+                <p @click="open1" style="cursor:pointer">联系技术支持</p>
               </el-col>
             </el-row>
           </div>
@@ -208,6 +156,8 @@
 import BarChart from './../components/dashboardAreaChart'
 import DateIndex from './../components/DateIndex'
 import { list, links, addLinks } from '@/api/base/notices'
+import { getUserOperatonInfoLists } from '../../mock/mock'
+import { baseUrl, baseInterface } from '../../mock/mockconfig'
 let _this = null
 export default {
   name: 'dashboard',
@@ -218,7 +168,8 @@ export default {
   data() {
     return {
       dataList: [],
-      linkList: []
+      linkList: [],
+      datas: []
     }
   },
   computed: {
@@ -227,42 +178,27 @@ export default {
     // }
   },
   methods: {
-    // 业务方法
-    doQuery(params) {
-      this.listLoading = true
-      list(this.requestParameters)
-        .then(data => {
-          this.dataList = data.data.items
-        })
-        .catch(e => {
-          this.$message.e('错了哦，这是一条错误消息')
-        })
+    open1() {
+      const h = this.$createElement
+      this.$notify({
+        title: '技术联系人',
+        message: h('i', { style: 'color: teal' }, '唐三：18902494883   亨瑞：15879468113')
+      })
     },
-    linkData(params) {
-      this.listLoading = true
-      links(this.requestParameters)
-        .then(data => {
-          this.linkList = data.data
-        })
-        .catch(e => {
-          this.$message.e('错了哦，这是一条错误消息')
-        })
-    },
-    // 表单提交
-    addLinks() {
-      addLinks().then(() => {
-        this.linkData()
+    initLog() {
+      this.$axios.post(baseUrl.domain + baseInterface.getUserOperatonInfo, {
+
+      }).then(res => {
+        this.datas = res.data.data
+        console.log(this.datas)
       })
     }
-    // 界面交互
   },
   // 挂载结束
   mounted: function () { },
   // 创建完毕状态
   created: function () {
-    _this = this
-    // this.doQuery()
-    // this.linkData()
+    this.initLog()
   },
   // 组件更新
   updated: function () { }

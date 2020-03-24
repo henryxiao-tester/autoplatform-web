@@ -108,6 +108,21 @@ export const constantRouterMap = [{
         noCache: true
       }
     }]
+  },
+  {
+    path: '/report-manager',
+    component: Layout,
+    redirect: '',
+    children: [{
+      path: 'reportList',
+      component: _import('report-manager/pages/index'),
+      name: '报告管理',
+      meta: {
+        title: '报告管理',
+        icon: 'dashboard',
+        noCache: true
+      }
+    }]
   }
 ]
 

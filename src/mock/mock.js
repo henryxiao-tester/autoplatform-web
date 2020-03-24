@@ -6,7 +6,9 @@ import {
 import {
   mockTaskList,
   getCaseSuiteInfo,
-  getCaseInfoList
+  getCaseInfoList,
+  getUserOperatonInfoLists,
+  getReportInfoLists
 } from './mockdata'
 
 const Random = Mock.Random
@@ -14,19 +16,22 @@ const Random = Mock.Random
 // mock需要给三个参数,url(与axios请求是传的url一致,我这个是本地启动的项目就直接用本地域名了)
 // 请求类型: get post...其他看文档
 // 数据处理函数,函数需要return数据
-Mock.mock(baseUrl.domain + baseInterface.login, 'get', () => {
+Mock.mock(baseUrl.domain + baseInterface.login, 'post', () => {
   return {
     code: 200,
     message: 'success',
-    data: [{
-      username: 'henry',
+    data: {
+      id: 2312311123,
+      userName: 'henryxiao',
       password: '123456',
-      age: 18
-    }]
+      role: 1,
+      userNick: '你好henry',
+      createTime: '2020-03-24 12:11:12'
+    }
   }
 })
 // post请求,带参数,参数会在data中返回,会返回url,type,body三个参数,可以把data打印出来看看
-Mock.mock(baseUrl.domain + baseInterface.login, 'post', data => {
+Mock.mock(baseUrl.domain + baseInterface.login, 'get', data => {
   // 请求传过来的参数在body中,传回的是json字符串,需要转义一下
   const info = JSON.parse(data.body)
   return {
@@ -202,6 +207,47 @@ Mock.mock(baseUrl.domain + baseInterface.findCaseInfo, 'post', data => {
       author: 'henry',
       createTime: '2020-03-23 12:00:00',
       updateTime: '2020-03-11 12:00:00'
+    }]
+  }
+})
+
+/**
+ * 获取用户操作日志
+ */
+Mock.mock(baseUrl.domain + baseInterface.getUserOperatonInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: getUserOperatonInfoLists()
+  }
+})
+
+/**
+ * 获取报告列表数据
+ */
+Mock.mock(baseUrl.domain + baseInterface.getReportInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: getReportInfoLists()
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.getReportInfoByName, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: [{
+      caseName: '用户登录',
+      interfaceName: '/user/login',
+      requestBody: 'orderType:1 price:10 createTime:213432432, userName:henry',
+      requestHeader: 'Content-Type: text/html;charset=UTF-8-23',
+      expectRes: 'code:200,message:success',
+      realRes: 'code:200,message:success',
+      finallyRes: 'Pass'
     }]
   }
 })

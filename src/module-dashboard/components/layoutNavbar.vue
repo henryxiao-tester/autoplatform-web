@@ -44,12 +44,9 @@
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
-            <el-dropdown-item>{{$t('navbar.dashboard')}}</el-dropdown-item>
+          <router-link to="/dashboard">
+            <el-dropdown-item>首页</el-dropdown-item>
           </router-link>
-          <!-- <a target="_blank" href="https://github.com/itheima2017/vue-element-admin-itheima">
-            <el-dropdown-item>{{$t('navbar.github')}}</el-dropdown-item>
-          </a>-->
           <el-dropdown-item>
             <span @click="personalCenter">个人中心</span>
           </el-dropdown-item>
@@ -92,7 +89,7 @@ export default {
       timeout: null,
       showSearchInput: false,
       restaurants: [],
-      userNick: 'sdsada'
+      userNick: ''
     }
   },
   methods: {
@@ -142,6 +139,9 @@ export default {
   },
   mounted() {
     this.restaurants = search()
+
+  },
+  created() {
     this.userNick = userLoginData.userNick
   }
 }

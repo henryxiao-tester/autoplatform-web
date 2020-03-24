@@ -53,3 +53,38 @@ export const getCaseInfoList = function () {
   }
   return getCaseInfoLists
 }
+
+// 用户操作日志mock数据
+const getUserOperatonInfoList = []
+export const getUserOperatonInfoLists = function () {
+  getUserOperatonInfoList.length = 0
+  for (let index = 0; index < 10; index++) {
+    getUserOperatonInfoList.push({
+      id: '322231211',
+      description: '执行了用户登录任务',
+      operator: 'henry',
+      createTime: '2020-03-23'
+    })
+
+  }
+  return getUserOperatonInfoList
+}
+
+// 用户操作日志mock数据
+const getReportInfoList = []
+export const getReportInfoLists = function () {
+  getReportInfoList.length = 0
+  for (let index = 0; index < 50; index++) {
+    getReportInfoList.push({
+      caseName: '创建订单',
+      interfaceName: '/order/createOrder',
+      requestBody: 'orderType:1 price:10 createTime:213432432, userName:henry',
+      requestHeader: 'Content-Type: text/html;charset=UTF-8-23',
+      expectRes: 'code:200,message:success',
+      realRes: 'code:200,message:success',
+      finallyRes: 'Pass'
+    })
+
+  }
+  return getReportInfoList
+}

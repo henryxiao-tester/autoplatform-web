@@ -35,5 +35,14 @@ export const baseInterface = {
   updateCaseInfo: '/caseManager/updateCaseInfo', // 修改用例
   getCaseInfo: '/caseManager/getCaseInfo', // 用例列表
   deleteCaseInfo: '/caseManager/deleteCaseInfo',
-  findCaseSuiteInfo: '/caseManager/findCaseSuiteInfo'
+  findCaseSuiteInfo: '/caseManager/findCaseSuiteInfo',
+  /**
+   * 获取用户操作日志
+   */
+  getUserOperatonInfo: '/log/getUserOperatonInfo',
+  /**
+   * 报告管理
+   */
+  getReportInfo: '/report/getReportInfo'
+
 }

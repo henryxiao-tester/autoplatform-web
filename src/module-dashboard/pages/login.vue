@@ -189,12 +189,13 @@ export default {
         }).then(res => {
           if (res.data.code === 200) {
             this.$router.push({ path: '/dashboard' })
-            userLoginData.id = res.data.id
-            userLoginData.userName = res.data.userName
-            userLoginData.password = res.data.password
-            userLoginData.role = res.data.role
-            userLoginData.userNick = res.data.userNick
-            userLoginData.createTime = res.data.createTime
+            userLoginData.id = res.data.data.id
+            userLoginData.userName = res.data.data.userName
+            userLoginData.password = res.data.data.password
+            userLoginData.role = res.data.data.role
+            userLoginData.userNick = res.data.data.userNick
+            userLoginData.createTime = res.data.data.createTime
+            console.log(res.data.data)
           } else {
             var errorInfo = res.data.message
             this.openError(errorInfo)
