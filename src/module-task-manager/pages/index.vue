@@ -9,14 +9,18 @@
           style="width:200px;margin-bottom:20px"
         ></el-input>
         <el-button type="primary" @click="selectData">查询</el-button>
-        <el-table :data="dataList" border style="width: 100%">
+        <el-table :data="showCaseList" border style="width: 100%">
           <!--el-table-column : 构造表格中的每一列
               prop： 数组中每个元素对象的属性名
           -->
-          <el-table-column fixed type="index" label="序号" width="50"></el-table-column>
+          <el-table-column fixed type="index" label="序号" width="50">
+            <template slot-scope="scope">
+              <span>{{(caseListPage - 1) * 20 + scope.$index + 1}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column fixed prop="taskId" label="任务ID"></el-table-column>
           <el-table-column fixed prop="taskName" label="任务名称"></el-table-column>
-          <el-table-column fixed prop="taskModule" label="任务模块"></el-table-column>
-          <el-table-column fixed prop="buildApi" label="构建API"></el-table-column>
+          <el-table-column fixed prop="casesID" label="关联用例集" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column fixed prop="createTime" label="创建时间"></el-table-column>
           <el-table-column fixed prop="updateTime" label="修改时间"></el-table-column>
           <el-table-column fixed="right" label="操作">
@@ -27,25 +31,36 @@
             </template>
           </el-table-column>
         </el-table>
+
         <el-button :plain="true" @click="openWarning" v-show="false"></el-button>
         <el-pagination
           background
           layout="prev, pager, next"
-          :total="1000"
+          :total="this.dataList.length"
+          :page-size="20"
           style="float:right;margin:20px"
+          @current-change="handleCaseListPageChange"
         ></el-pagination>
       </el-card>
       <el-dialog title="修改当前任务" :visible.sync="dialogFormVisible" width="600px">
         <el-form :model="form">
+          <el-form-item label="任务ID" :label-width="formLabelWidth">
+            <el-input v-model="form.taskId" auto-complete="off"></el-input>
+          </el-form-item>
           <el-form-item label="任务名称" :label-width="formLabelWidth">
             <el-input v-model="form.taskName" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="任务模块" :label-width="formLabelWidth">
-            <el-input v-model="form.taskModule" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="构建API" :label-width="formLabelWidth">
-            <el-input v-model="form.buildApi" auto-complete="off"></el-input>
-          </el-form-item>
+          <div class="box">
+            <div class="top">
+              <div class="bottom">
+                <el-tooltip class="item" effect="dark" content="填写用例集ID,多个逗号添加" placement="bottom">
+                  <el-form-item label="关联用例集" :label-width="formLabelWidth">
+                    <el-input v-model="form.casesID" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-tooltip>
+              </div>
+            </div>
+          </div>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -69,10 +84,11 @@ export default {
       input: '',
       dialogTableVisible: false,
       dialogFormVisible: false,
+      caseListPage: 1,
       form: {
         taskName: '',
-        taskModule: '',
-        buildApi: ''
+        taskId: '',
+        casesID: ''
       },
       formLabelWidth: '120px',
       delCallBack: false
@@ -114,14 +130,14 @@ export default {
     handleUpdate(data) {
       this.dialogFormVisible = true
       this.form.taskName = data.taskName
-      this.form.taskModule = data.taskModule
-      this.form.buildApi = data.buildApi
+      this.form.taskId = data.taskId
+      this.form.casesID = data.casesID
     },
     sureModify() {
       this.$axios.post(baseUrl.domain + baseInterface.updateTaskDataByName, {
         taskName: this.form.taskName,
-        taskModule: this.form.taskModule,
-        buildApi: this.form.buildApi
+        taskId: this.form.taskId,
+        casesID: this.form.casesID
       }).then(res => {
         console.log(res)
         if (res.data.code === 200) {
@@ -211,6 +227,9 @@ export default {
         })
       })
     },
+    handleCaseListPageChange(data) {
+      this.caseListPage = data
+    },
     openWarning(msg, typeValue) {
       this.$message({
         message: msg,
@@ -221,6 +240,13 @@ export default {
   // 创建完毕状态
   created() {
     this.getList()
+  },
+  computed: {
+    showCaseList() {
+      return this.dataList.slice(
+        (this.caseListPage - 1) * 20, this.caseListPage * 20
+      )
+    }
   }
 }
 </script>
@@ -232,5 +258,36 @@ export default {
 .pagination {
   margin-top: 10px;
   text-align: right;
+}
+.box {
+  width: 400px;
+
+  .top {
+    text-align: center;
+  }
+
+  .left {
+    float: left;
+    width: 60px;
+  }
+
+  .right {
+    float: right;
+    width: 60px;
+  }
+
+  .bottom {
+    clear: both;
+    text-align: center;
+  }
+
+  .item {
+    margin: 4px;
+  }
+
+  .left .el-tooltip__popper,
+  .right .el-tooltip__popper {
+    padding: 8px 10px;
+  }
 }
 </style>

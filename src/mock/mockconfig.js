@@ -30,9 +30,10 @@ export const baseInterface = {
   /**
    * 用例管理
    */
-  getCaseSuiteInfo: '/caseManager/getCaseSuiteInfo',
-  addCase: '/caseManager/addCase',
-  updateCaseInfo: '/caseManager/updateCaseInfo',
-  getCaseInfo: '/caseManager/getCaseInfo'
-
+  getCaseSuiteInfo: '/caseManager/getCaseSuiteInfo', // 添加用例获取用例集
+  addCase: '/caseManager/addCase', // 添加用例
+  updateCaseInfo: '/caseManager/updateCaseInfo', // 修改用例
+  getCaseInfo: '/caseManager/getCaseInfo', // 用例列表
+  deleteCaseInfo: '/caseManager/deleteCaseInfo',
+  findCaseSuiteInfo: '/caseManager/findCaseSuiteInfo'
 }

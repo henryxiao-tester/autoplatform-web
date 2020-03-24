@@ -6,12 +6,12 @@ import {
 
 const dataList = []
 export const mockTaskList = function () {
+  dataList.length = 0
   for (let index = 0; index < 30; index++) {
     dataList.push({
-      taskId: index,
+      taskId: '3243243211',
       taskName: '首次测试',
-      taskModule: '业务登录注册模块',
-      buildApi: 'http://www.baidu.com',
+      casesID: '323243211,321321312,235676876',
       isShow: 1,
       createTime: '2020-03-21 10:36:00',
       updateTime: '2020-03-29 10:36:00'
@@ -22,12 +22,13 @@ export const mockTaskList = function () {
 }
 
 // 用例管理添加用例mock数据
-const getCaseSuiteInfoList = []
+var getCaseSuiteInfoList = []
 export const getCaseSuiteInfo = function () {
+  getCaseSuiteInfoList.length = 0
   for (let index = 0; index < 30; index++) {
     getCaseSuiteInfoList.push({
       packageName: 'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.bills.PrepaymentTestCase',
-      status: 1
+      status: 0
     })
 
   }
@@ -37,13 +38,12 @@ export const getCaseSuiteInfo = function () {
 // 用例管理用例列表mock数据
 const getCaseInfoLists = []
 export const getCaseInfoList = function () {
+  getCaseInfoLists.length = 0
   for (let index = 0; index < 30; index++) {
     getCaseInfoLists.push({
       id: '322231211',
       caseName: '用户登录模块用例',
-      caseSuite: [
-        'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase', 'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase'
-      ],
+      caseSuite: ['com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase', ' com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase'],
       description: '首次录入用户模块',
       author: 'henry',
       createTime: '2020-03-23',

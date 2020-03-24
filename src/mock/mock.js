@@ -61,8 +61,8 @@ Mock.mock(baseUrl.domain + baseInterface.getTaskDataByName, 'post', data => {
     message: 'success',
     data: [{
       taskName: '查询获得的任务名称',
-      taskModule: '业务登录注册模块',
-      buildApi: 'http://www.baidu.com',
+      taskId: 213224324,
+      casesID: '323243211,321321312,235676876',
       isShow: 1,
       createTime: '2020-03-21 10:36:00',
       updateTime: '2020-03-29 10:36:00'
@@ -134,6 +134,17 @@ Mock.mock(baseUrl.domain + baseInterface.getCaseSuiteInfo, 'post', data => {
     data: getCaseSuiteInfo()
   }
 })
+Mock.mock(baseUrl.domain + baseInterface.findCaseSuiteInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: [{
+      packageName: 'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.bills.PrepaymentTestCase',
+      status: 1
+    }]
+  }
+})
 
 Mock.mock(baseUrl.domain + baseInterface.updateCaseInfo, 'post', data => {
   const info = JSON.parse(data.body)
@@ -157,5 +168,40 @@ Mock.mock(baseUrl.domain + baseInterface.getCaseInfo, 'post', data => {
     code: 200,
     message: 'success',
     data: getCaseInfoList()
+  }
+})
+Mock.mock(baseUrl.domain + baseInterface.deleteCaseInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.getCaseInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: getCaseInfoList()
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.findCaseInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: [{
+      id: '2132432432',
+      caseName: '测试查询用户登录',
+      caseSuite: [
+        'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase', 'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase'
+      ],
+      description: '查询测试效果',
+      author: 'henry',
+      createTime: '2020-03-23 12:00:00',
+      updateTime: '2020-03-11 12:00:00'
+    }]
   }
 })
