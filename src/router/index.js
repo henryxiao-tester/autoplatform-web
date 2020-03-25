@@ -123,6 +123,21 @@ export const constantRouterMap = [{
         noCache: true
       }
     }]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '',
+    children: [{
+      path: 'userCenter',
+      component: _import('user-manager/pages/index'),
+      name: '用户管理',
+      meta: {
+        title: '用户管理',
+        icon: 'dashboard',
+        noCache: true
+      }
+    }]
   }
 ]
 

@@ -27,10 +27,6 @@ Vue.prototype.$axios = axios
 Vue.use(tools)
 Vue.use(dashboard, store)
 
-/*
- * 注册 - 组件
- */
-
 // 饿了么
 Vue.use(Element, {
   size: 'medium', // set element-ui default size

@@ -43,6 +43,13 @@ export const baseInterface = {
   /**
    * 报告管理
    */
-  getReportInfo: '/report/getReportInfo'
+  getReportInfo: '/report/getReportInfo',
+
+  /**
+   * 用户管理
+   */
+  getUserCenterInfo: '/user/getUserCenterInfo',
+  getUserCenterInfoByName: '/user/getUserCenterInfoByName',
+  updateUserPermission: '/user/updateUserPermission'
 
 }

@@ -9,6 +9,7 @@
           style="width:200px;margin-bottom:20px"
         ></el-input>
         <el-button type="primary" @click="selectData">查询</el-button>
+        <el-button type="primary" @click="addCaseData" style="float:right;margin-right:30px">添加任务</el-button>
         <el-table :data="showCaseList" border style="width: 100%">
           <!--el-table-column : 构造表格中的每一列
               prop： 数组中每个元素对象的属性名

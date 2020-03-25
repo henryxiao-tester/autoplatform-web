@@ -1,13 +1,23 @@
 <template>
   <div class="tags-view-container">
-    <scroll-pane class='tags-view-wrapper' ref='scrollPane'>
-      <router-link ref='tag' class="tags-view-item" :class="isActive(tag)?'active':''" v-for="tag in Array.from(visitedViews)"
-        :to="tag.path" :key="tag.path" @contextmenu.prevent.native="openMenu(tag,$event)">
+    <scroll-pane class="tags-view-wrapper" ref="scrollPane">
+      <router-link
+        ref="tag"
+        class="tags-view-item"
+        :class="isActive(tag)?'active':''"
+        v-for="tag in Array.from(visitedViews)"
+        :to="tag.path"
+        :key="tag.path"
+        @contextmenu.prevent.native="openMenu(tag,$event)"
+      >
         {{generateTitle(tag.title)}}
-        <span class='el-icon-close' @click.prevent.stop='closeSelectedTag(tag)'></span>
+        <span
+          class="el-icon-close"
+          @click.prevent.stop="closeSelectedTag(tag)"
+        ></span>
       </router-link>
     </scroll-pane>
-    <ul class='contextmenu' v-show="visible" :style="{left:left+'px',top:top+'px'}">
+    <ul class="contextmenu" v-show="visible" :style="{left:left+'px',top:top+'px'}">
       <li @click="closeSelectedTag(selectedTag)">{{$t('tagsView.close')}}</li>
       <li @click="closeOthersTags">{{$t('tagsView.closeOthers')}}</li>
       <li @click="closeAllTags">{{$t('tagsView.closeAll')}}</li>
@@ -17,11 +27,11 @@
 
 <script>
 import ScrollPane from '@/components/ScrollPane'
-import {generateTitle} from '@/utils/i18n'
+import { generateTitle } from '@/utils/i18n'
 
 export default {
   name: 'layoutTags',
-  components: {ScrollPane},
+  components: { ScrollPane },
   data() {
     return {
       visible: false,
@@ -87,7 +97,7 @@ export default {
           if (latestView) {
             this.$router.push(latestView.path)
           } else {
-            this.$router.push('/')
+            this.$router.push('/dashboard')
           }
         }
       })
@@ -138,11 +148,11 @@ export default {
         margin-left: 15px;
       }
       &.active {
-        background-color: #409EFF;
+        background-color: #409eff;
         color: #fff;
-        border-color: #409EFF;
+        border-color: #409eff;
         &::before {
-          content: '';
+          content: "";
           background: #fff;
           display: inline-block;
           width: 8px;

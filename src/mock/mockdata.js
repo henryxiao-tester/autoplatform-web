@@ -88,3 +88,21 @@ export const getReportInfoLists = function () {
   }
   return getReportInfoList
 }
+
+// 用户管理mock数据
+const getUserCenterInfoList = []
+export const getUserCenterInfoLists = function () {
+  getUserCenterInfoList.length = 0
+  for (let index = 0; index < 50; index++) {
+    getUserCenterInfoList.push({
+      userName: 'henryxiao',
+      userNick: '肖龙',
+      role: '普通用户',
+      status: '禁用',
+      createTime: '2020-03-25 13:00:00',
+      updateTime: '2020-03-25 13:00:00'
+    })
+
+  }
+  return getUserCenterInfoList
+}

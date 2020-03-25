@@ -8,7 +8,8 @@ import {
   getCaseSuiteInfo,
   getCaseInfoList,
   getUserOperatonInfoLists,
-  getReportInfoLists
+  getReportInfoLists,
+  getUserCenterInfoLists
 } from './mockdata'
 
 const Random = Mock.Random
@@ -16,7 +17,8 @@ const Random = Mock.Random
 // mock需要给三个参数,url(与axios请求是传的url一致,我这个是本地启动的项目就直接用本地域名了)
 // 请求类型: get post...其他看文档
 // 数据处理函数,函数需要return数据
-Mock.mock(baseUrl.domain + baseInterface.login, 'post', () => {
+Mock.mock(baseUrl.domain + baseInterface.login, 'post', data => {
+  const info = JSON.parse(data.body)
   return {
     code: 200,
     message: 'success',
@@ -31,9 +33,9 @@ Mock.mock(baseUrl.domain + baseInterface.login, 'post', () => {
   }
 })
 // post请求,带参数,参数会在data中返回,会返回url,type,body三个参数,可以把data打印出来看看
-Mock.mock(baseUrl.domain + baseInterface.login, 'get', data => {
+Mock.mock(baseUrl.domain + baseInterface.login, 'get', () => {
   // 请求传过来的参数在body中,传回的是json字符串,需要转义一下
-  const info = JSON.parse(data.body)
+  // const info = JSON.parse(data.body)
   return {
     code: 200,
     message: 'success',
@@ -249,5 +251,41 @@ Mock.mock(baseUrl.domain + baseInterface.getReportInfoByName, 'post', data => {
       realRes: 'code:200,message:success',
       finallyRes: 'Pass'
     }]
+  }
+})
+
+/**
+ * 用户管理
+ */
+Mock.mock(baseUrl.domain + baseInterface.getUserCenterInfo, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: getUserCenterInfoLists()
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.getUserCenterInfoByName, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: [{
+      userName: 'henryxiao',
+      userNick: '肖龙',
+      role: '普通用户',
+      status: '开启',
+      createTime: '2020-03-25 13:00:00',
+      updateTime: '2020-03-25 13:00:00'
+    }]
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.updateUserPermission, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
   }
 })

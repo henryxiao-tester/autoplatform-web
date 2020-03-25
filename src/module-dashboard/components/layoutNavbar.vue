@@ -97,7 +97,7 @@ export default {
       this.$router.push({ path: '/personalCenter' })
     },
     toggleSideBar() {
-      this.$store.dispatch('toggleSideBar')
+
     },
     logout() {
       this.$router.push({ path: '/login' })

@@ -21,7 +21,7 @@
             <i class="el-icon-menu"></i>
             <span>任务管理</span>
           </template>
-          <el-menu-item-group background-color="#5586FE">
+          <el-menu-item-group>
             <el-menu-item index="/task/taskList">任务列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -36,6 +36,10 @@
         <el-menu-item index="/personalCenter">
           <i class="el-icon-setting"></i>
           <span slot="title">个人中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/userCenter">
+          <i class="el-icon-edit"></i>
+          <span slot="title">用户管理</span>
         </el-menu-item>
       </el-menu>
     </el-col>
@@ -65,3 +69,5 @@ export default {
 
 }
 </script>
+<style >
+</style>
