@@ -9,11 +9,49 @@
           style="width:200px;margin-bottom:20px"
         ></el-input>
         <el-button type="primary" @click="selectData">查询</el-button>
-        <el-button type="primary" @click="addCaseData" style="float:right;margin-right:30px">添加任务</el-button>
-        <el-table :data="showCaseList" border style="width: 100%">
-          <!--el-table-column : 构造表格中的每一列
-              prop： 数组中每个元素对象的属性名
-          -->
+        <el-button type="primary" @click="getCaseInfo" style="float:right;margin-right:30px">添加任务</el-button>
+        <el-dialog title="添加任务" :visible.sync="Visible">
+          <el-input
+            placeholder="请输用例集名称"
+            v-model="caseSuiteName"
+            clearable
+            style="width:200px;margin-bottom:20px"
+          ></el-input>
+          <el-button type="primary" @click="selectCaseSuite">查询</el-button>
+          <el-table :data="showCaseSuiteTable">
+            <el-table-column type="index" label="序号" width="50px">
+              <template slot-scope="scope">
+                <span>{{(currentPage - 1) * 10 + scope.$index + 1}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column property="id" label="用例集ID"></el-table-column>
+            <el-table-column property="caseName" label="用例集名称"></el-table-column>
+            <el-table-column property="status" label="状态" width="100px">
+              <template slot-scope="scope">
+                <el-switch
+                  v-model="scope.row.status"
+                  :inactive-value="0"
+                  :active-value="1"
+                  active-color="#13ce66"
+                  inactive-color="#ff4949"
+                  @change="changeSwitch(scope.row)"
+                ></el-switch>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="Visible = false">取 消</el-button>
+            <el-button type="primary" @click="Visible = false">确 定</el-button>
+          </div>
+          <el-pagination
+            layout="prev, pager, next"
+            :total="this.len"
+            :page-size="10"
+            @current-change="handleCurrentChange"
+          ></el-pagination>
+        </el-dialog>
+
+        <el-table :data="showTaskList" border style="width: 100%">
           <el-table-column fixed type="index" label="序号" width="50">
             <template slot-scope="scope">
               <span>{{(caseListPage - 1) * 20 + scope.$index + 1}}</span>
@@ -83,6 +121,10 @@ export default {
     return {
       dataList: [],
       input: '',
+      len: 0,
+      caseSuiteData: [],
+      Visible: false,
+      currentPage: 1,
       dialogTableVisible: false,
       dialogFormVisible: false,
       caseListPage: 1,
@@ -92,10 +134,41 @@ export default {
         casesID: ''
       },
       formLabelWidth: '120px',
-      delCallBack: false
+      delCallBack: false,
+      caseSuiteName: ''
     }
   },
   methods: {
+    /**
+     * 选中状态切换
+     */
+    changeSwitch(val) {
+      console.log(val)
+    },
+    /**
+    * 添加任务 =》查询
+    */
+    selectCaseSuite() {
+      if (inputDataCheck(this.caseSuiteName)) {
+        this.$axios.post(baseUrl.domain + baseInterface.getCaseInfo, {
+          pageSize: 1
+        }).then(res => {
+          this.caseSuiteData = res.data.data
+        })
+      } else {
+        this.$axios.post(baseUrl.domain + baseInterface.getCaseInfo, {
+          caseSuiteName: this.caseSuiteName
+        }).then(res => {
+          console.log(this.caseSuiteData)
+        })
+      }
+    },
+    /**
+     * 添加用例分页展示
+     */
+    handleCurrentChange(data) {
+      this.currentPage = data
+    },
     /**
      * 点击菜单列表初始化显示所有数据
      */
@@ -104,6 +177,24 @@ export default {
         pageSize: 1
       }).then(res => {
         this.dataList = res.data.data
+      })
+    },
+    /**
+  * 添加用例
+  */
+    getCaseInfo() {
+      this.$axios.post(baseUrl.domain + baseInterface.getCaseInfo, {
+        pageSize: 1
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.Visible = true
+
+          this.caseSuiteData = res.data.data
+          this.len = this.caseSuiteData.length
+          console.log(res.data.data)
+        } else {
+          this.openWarning(res.data.message, 'error')
+        }
       })
     },
     /**
@@ -243,9 +334,18 @@ export default {
     this.getList()
   },
   computed: {
-    showCaseList() {
+    showTaskList() {
       return this.dataList.slice(
         (this.caseListPage - 1) * 20, this.caseListPage * 20
+      )
+    },
+    showCaseSuiteTable() {
+      console.log(this.currentPage)
+      console.log(this.caseSuiteData.slice(
+        (this.currentPage - 1) * 10, this.currentPage * 10
+      ))
+      return this.caseSuiteData.slice(
+        (this.currentPage - 1) * 10, this.currentPage * 10
       )
     }
   }

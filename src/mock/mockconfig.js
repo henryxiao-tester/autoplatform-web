@@ -22,6 +22,8 @@ export const baseInterface = {
   updateTaskDataByName: '/task/updateTaskDataByName',
   deleteTaskData: '/task/deleteTaskData',
   excuteTask: '/task/deleteTaskData',
+  addTaskData: '/task/addTaskData',
+  getCaseSuiteList: '/task/getCaseSuiteList',
   /**
    * 个人中心
    */

@@ -3,14 +3,14 @@
     <div class="app-container">
       <el-card shadow="never">
         <el-input
-          placeholder="请输用例名称"
+          placeholder="请输用例集名称"
           v-model="inputData"
           clearable
           style="width:200px;margin-bottom:20px"
         ></el-input>
         <el-button type="primary" @click="selectCaseData">查询</el-button>
-        <el-button type="primary" @click="addCaseData" style="float:right;margin-right:30px">添加用例</el-button>
-        <el-dialog title="添加测试用例" :visible.sync="dialogTableVisible">
+        <el-button type="primary" @click="addCaseData" style="float:right;margin-right:30px">添加用例集</el-button>
+        <el-dialog title="添加测试用例集" :visible.sync="dialogTableVisible">
           <el-input
             placeholder="请输包类名"
             v-model="packageClassName"
@@ -57,9 +57,9 @@
               <span>{{(caseListPage - 1) * 20 + scope.$index + 1}}</span>
             </template>
           </el-table-column>
-          <el-table-column fixed prop="id" label="用例ID"></el-table-column>
-          <el-table-column fixed prop="caseName" label="用例名称"></el-table-column>
-          <el-table-column fixed prop="caseSuite" label="用例集" :show-overflow-tooltip="true"></el-table-column>
+          <el-table-column fixed prop="id" label="用例集ID"></el-table-column>
+          <el-table-column fixed prop="caseName" label="用例集名称"></el-table-column>
+          <el-table-column fixed prop="caseSuite" label="绑定用例" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column fixed prop="description" label="描述信息"></el-table-column>
           <el-table-column fixed prop="author" label="作者"></el-table-column>
           <el-table-column fixed prop="createTime" label="创建时间"></el-table-column>
@@ -81,15 +81,15 @@
           @current-change="handleCaseListPageChange"
         ></el-pagination>
       </el-card>
-      <el-dialog title="修改当前用例" :visible.sync="Visible" width="600px">
+      <el-dialog title="修改当前用例集" :visible.sync="Visible" width="600px">
         <el-form :model="currentUpdateData">
-          <el-form-item label="用例Id：" :label-width="formLabelWidth">
+          <el-form-item label="用例集Id：" :label-width="formLabelWidth">
             <el-input v-model="currentUpdateData.id" auto-complete="off" disabled></el-input>
           </el-form-item>
-          <el-form-item label="用例名称：" :label-width="formLabelWidth">
+          <el-form-item label="用例集名称：" :label-width="formLabelWidth">
             <el-input v-model="currentUpdateData.caseName" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="用例集：" :label-width="formLabelWidth">
+          <el-form-item label="绑定用例：" :label-width="formLabelWidth">
             <el-input v-model="currentUpdateData.caseSuite[0]" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="描述信息：" :label-width="formLabelWidth">
