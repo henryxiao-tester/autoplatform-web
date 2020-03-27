@@ -9,16 +9,19 @@
           style="width:200px;margin-bottom:20px"
         ></el-input>
         <el-button type="primary" @click="selectCaseData">查询</el-button>
-        <el-button type="primary" @click="addCaseData" style="float:right;margin-right:30px">添加用例集</el-button>
-        <el-dialog title="添加测试用例集" :visible.sync="dialogTableVisible">
+        <el-button type="primary" @click="addCaseSuite" style="float:right;margin-right:30px">添加用例集</el-button>
+        <el-dialog title="绑定用例" :visible.sync="dialogTableVisible">
           <el-input
             placeholder="请输包类名"
             v-model="packageClassName"
             clearable
             style="width:200px;margin-bottom:20px"
           ></el-input>
-          <el-button type="primary" @click="selectCaseSuite">查询</el-button>
 
+          <el-button type="primary" @click="selectCaseSuite">查询</el-button>
+          <span
+            style="float:right;margin-right:30px;font-size:20px;padding-top:5px"
+          >当前用例集ID:&nbsp;&nbsp;&nbsp;&nbsp;{{currentCaseSuiteId}}</span>
           <el-table :data="showCaseSuiteTable">
             <!-- <el-table-column type="selection" width="55"></el-table-column> -->
             <el-table-column type="index" label="序号" width="50px">
@@ -64,10 +67,11 @@
           <el-table-column fixed prop="author" label="作者"></el-table-column>
           <el-table-column fixed prop="createTime" label="创建时间"></el-table-column>
           <el-table-column fixed prop="updateTime" label="更新时间"></el-table-column>
-          <el-table-column fixed="right" label="操作">
+          <el-table-column fixed="right" label="操作" width="180">
             <template slot-scope="scope">
               <el-button type="text" @click=" handleUpdate(scope.row)">修改</el-button>
               <el-button @click="handleDelete(scope.row)" type="text">删除</el-button>
+              <el-button @click="bindingCaseData(scope.row)" type="text">绑定用例</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -104,6 +108,24 @@
           <el-button type="primary" @click="sureModify">确 定</el-button>
         </div>
       </el-dialog>
+
+      <el-dialog title="添加用例集" :visible.sync="addCaseSuiteVisible" width="600px">
+        <el-form :model="addCase">
+          <el-form-item label="用例集名称：" :label-width="formLabelWidth">
+            <el-input v-model="addCase.caseName" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="描述信息：" :label-width="formLabelWidth">
+            <el-input v-model="addCase.description" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="作者：" :label-width="formLabelWidth">
+            <el-input v-model="addCase.author" auto-complete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="Visible = false">取 消</el-button>
+          <el-button type="primary" @click="sureCaseSuiteModify">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -118,6 +140,8 @@ export default {
       inputData: '', // 输入用例名称
       packageClassName: ' ', // 包类名
       caseSuiteData: [],
+      currentCaseSuiteId: '',
+      addCaseSuiteVisible: false,
       len: 0,
       currentPage: 1,
       caseListPage: 1,
@@ -132,6 +156,11 @@ export default {
         caseSuite: [],
         author: '',
         description: ''
+      },
+      addCase: {
+        caseName: '',
+        description: '',
+        author: ''
       }
     }
   },
@@ -148,8 +177,27 @@ export default {
     /**
      * 添加用例
      */
-    addCaseData() {
-
+    addCaseSuite() {
+      this.addCaseSuiteVisible = true
+    },
+    sureCaseSuiteModify() {
+      if (inputDataCheck(this.addCase.caseName)) {
+        this.openWarning('用例集名称不能为空', 'error')
+        return null
+      }
+      this.$axios.post(baseUrl.domain + baseInterface.addCase, {
+        caseName: this.addCase.caseName
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.addCaseSuiteVisible = false
+          this.openWarning(res.data.message, 'success')
+        } else {
+          this.openWarning(res.data.message, 'error')
+        }
+      })
+    },
+    bindingCaseData(val) {
+      this.currentCaseSuiteId = val.id
       this.$axios.post(baseUrl.domain + baseInterface.getCaseSuiteInfo, {
         currentPage: 1
       }).then(res => {

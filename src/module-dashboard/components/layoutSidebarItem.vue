@@ -25,10 +25,19 @@
             <el-menu-item index="/task/taskList">任务列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-        <el-menu-item index="/case-manager/caseList">
-          <i class="el-icon-setting"></i>
-          <span slot="title">用例管理</span>
-        </el-menu-item>
+
+        <el-submenu index="3" @close="index">
+          <template slot="title">
+            <i class="el-icon-setting"></i>
+            <span>用例管理</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/case-manager/caseSuiteList">用例集列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <el-menu-item index="/case-manager/caseList">用例列表</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
         <el-menu-item index="/report-manager/reportList">
           <i class="el-icon-document"></i>
           <span slot="title">报告管理</span>

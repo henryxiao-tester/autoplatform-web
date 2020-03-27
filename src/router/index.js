@@ -99,11 +99,20 @@ export const constantRouterMap = [{
     component: Layout,
     redirect: '',
     children: [{
-      path: 'caseList',
+      path: 'caseSuiteList',
       component: _import('case-manager/pages/index'),
-      name: '用例管理',
+      name: '用例集列表',
       meta: {
-        title: '用例管理',
+        title: '用例集列表',
+        icon: 'dashboard',
+        noCache: true
+      }
+    }, {
+      path: 'caseList',
+      component: _import('case-manager/pages/caseList'),
+      name: '用例列表',
+      meta: {
+        title: '用例列表',
         icon: 'dashboard',
         noCache: true
       }

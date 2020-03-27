@@ -59,7 +59,15 @@ Mock.mock(baseUrl.domain + baseInterface.getTaskList, 'post', data => {
     data: mockTaskList()
   }
 })
-
+// 任务列表获取用例集信息
+Mock.mock(baseUrl.domain + baseInterface.getCaseSuiteList, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success',
+    data: getCaseSuiteLists()
+  }
+})
 // mock获取查询任务列表中的数据
 Mock.mock(baseUrl.domain + baseInterface.getTaskDataByName, 'post', data => {
   const info = JSON.parse(data.body)
@@ -86,8 +94,17 @@ Mock.mock(baseUrl.domain + baseInterface.updateTaskDataByName, 'post', data => {
   }
 })
 
-// 修改任务列表中的数据
+// 删除任务列表中的数据
 Mock.mock(baseUrl.domain + baseInterface.deleteTaskData, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
+
+// 添加任务
+Mock.mock(baseUrl.domain + baseInterface.addTaskData, 'post', data => {
   const info = JSON.parse(data.body)
   return {
     code: 200,
@@ -97,6 +114,14 @@ Mock.mock(baseUrl.domain + baseInterface.deleteTaskData, 'post', data => {
 
 // 执行任务列表中的数据
 Mock.mock(baseUrl.domain + baseInterface.excuteTask, 'post', data => {
+  const info = JSON.parse(data.body)
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
+// 任务绑定用例集
+Mock.mock(baseUrl.domain + baseInterface.bindingCaseSuite, 'post', data => {
   const info = JSON.parse(data.body)
   return {
     code: 200,
@@ -203,7 +228,8 @@ Mock.mock(baseUrl.domain + baseInterface.findCaseInfo, 'post', data => {
       id: '2132432432',
       caseName: '测试查询用户登录',
       caseSuite: [
-        'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase', 'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase'
+        'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase',
+        'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase'
       ],
       description: '查询测试效果',
       author: 'henry',
@@ -266,21 +292,25 @@ Mock.mock(baseUrl.domain + baseInterface.getUserCenterInfo, 'post', data => {
   }
 })
 
-Mock.mock(baseUrl.domain + baseInterface.getUserCenterInfoByName, 'post', data => {
-  const info = JSON.parse(data.body)
-  return {
-    code: 200,
-    message: 'success',
-    data: [{
-      userName: 'henryxiao',
-      userNick: '肖龙',
-      role: '普通用户',
-      status: '开启',
-      createTime: '2020-03-25 13:00:00',
-      updateTime: '2020-03-25 13:00:00'
-    }]
+Mock.mock(
+  baseUrl.domain + baseInterface.getUserCenterInfoByName,
+  'post',
+  data => {
+    const info = JSON.parse(data.body)
+    return {
+      code: 200,
+      message: 'success',
+      data: [{
+        userName: 'henryxiao',
+        userNick: '肖龙',
+        role: '普通用户',
+        status: '开启',
+        createTime: '2020-03-25 13:00:00',
+        updateTime: '2020-03-25 13:00:00'
+      }]
+    }
   }
-})
+)
 
 Mock.mock(baseUrl.domain + baseInterface.updateUserPermission, 'post', data => {
   const info = JSON.parse(data.body)

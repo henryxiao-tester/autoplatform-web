@@ -9,13 +9,20 @@
           style="width:200px;margin-bottom:20px"
         ></el-input>
         <el-button type="primary" @click="selectData">查询</el-button>
-        <el-button type="primary" @click="getCaseInfo" style="float:right;margin-right:30px">添加任务</el-button>
-        <el-dialog title="添加任务" :visible.sync="Visible">
+        <el-button type="primary" @click="addTask" style="float:right;margin-right:20px">添加任务</el-button>
+        <el-button type="primary" @click="getCaseInfo" style="float:right;margin-right:20px">绑定用例集</el-button>
+        <el-dialog title="当前任务绑定用例集" :visible.sync="Visible">
           <el-input
             placeholder="请输用例集名称"
             v-model="caseSuiteName"
             clearable
             style="width:200px;margin-bottom:20px"
+          ></el-input>
+          <el-input
+            placeholder="请输用任务ID(必填)"
+            v-model="inputTaskId"
+            clearable
+            style="width:200px;margin-bottom:20px;float:right"
           ></el-input>
           <el-button type="primary" @click="selectCaseSuite">查询</el-button>
           <el-table :data="showCaseSuiteTable">
@@ -41,7 +48,7 @@
           </el-table>
           <div slot="footer" class="dialog-footer">
             <el-button @click="Visible = false">取 消</el-button>
-            <el-button type="primary" @click="Visible = false">确 定</el-button>
+            <el-button type="primary" @click="bindingCaseSuite">确 定</el-button>
           </div>
           <el-pagination
             layout="prev, pager, next"
@@ -106,6 +113,18 @@
           <el-button type="primary" @click="sureModify">确 定</el-button>
         </div>
       </el-dialog>
+
+      <el-dialog title="添加任务" :visible.sync="taskVisible" width="600px">
+        <el-form>
+          <el-form-item label="任务名称" :label-width="formLabelWidth">
+            <el-input v-model="addTaskName" auto-complete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="taskVisible = false">取 消</el-button>
+          <el-button type="primary" @click="sureAddTask">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -121,12 +140,16 @@ export default {
     return {
       dataList: [],
       input: '',
+      inputTaskId: '',
+      caseSuites: [],
+      addTaskName: '',
       len: 0,
       caseSuiteData: [],
       Visible: false,
       currentPage: 1,
       dialogTableVisible: false,
       dialogFormVisible: false,
+      taskVisible: false,
       caseListPage: 1,
       form: {
         taskName: '',
@@ -142,8 +165,31 @@ export default {
     /**
      * 选中状态切换
      */
-    changeSwitch(val) {
-      console.log(val)
+    changeSwitch(data) {
+      this.caseSuites.push(data.id)
+      console.log(this.caseSuites)
+    },
+    /**
+     * 添加任务
+     */
+    addTask() {
+      this.taskVisible = true
+    },
+    sureAddTask() {
+      if (inputDataCheck(this.addTaskName)) {
+        this.openWarning('任务名称不能为空', 'error')
+        return null
+      }
+      this.$axios.post(baseUrl.domain + baseInterface.addTaskData, {
+        taskName: this.addTaskName
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.taskVisible = false
+          this.openWarning(res.data.message, 'success')
+        } else {
+          this.openWarning(res.data.message, 'error')
+        }
+      })
     },
     /**
     * 添加任务 =》查询
@@ -180,7 +226,28 @@ export default {
       })
     },
     /**
-  * 添加用例
+     * 任务绑定用例集
+     */
+    bindingCaseSuite() {
+      if (inputDataCheck(this.inputTaskId)) {
+        this.openWarning('任务ID不能为空', 'error')
+        return null
+      }
+      this.$axios.post(baseUrl.domain + baseInterface.bindingCaseSuite, {
+        taskId: this.inputTaskId,
+        caseSuiteId: this.caseSuites
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.Visible = false
+          this.openWarning(res.data.message, 'success')
+        } else {
+          this.openWarning(res.data.message, 'error')
+        }
+      })
+
+    },
+    /**
+  * 获取用例集信息
   */
     getCaseInfo() {
       this.$axios.post(baseUrl.domain + baseInterface.getCaseInfo, {

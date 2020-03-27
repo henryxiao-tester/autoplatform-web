@@ -24,6 +24,7 @@ export const baseInterface = {
   excuteTask: '/task/deleteTaskData',
   addTaskData: '/task/addTaskData',
   getCaseSuiteList: '/task/getCaseSuiteList',
+  bindingCaseSuite: '/task/bindingCaseSuite',
   /**
    * 个人中心
    */
@@ -32,9 +33,9 @@ export const baseInterface = {
   /**
    * 用例管理
    */
-  getCaseSuiteInfo: '/caseManager/getCaseSuiteInfo', // 添加用例获取用例集
-  addCase: '/caseManager/addCase', // 添加用例
-  updateCaseInfo: '/caseManager/updateCaseInfo', // 修改用例
+  getCaseSuiteInfo: '/caseManager/getCaseSuiteInfo', // 添加用例集获取用例
+  addCase: '/caseManager/addCase', // 添加用例集
+  updateCaseInfo: '/caseManager/updateCaseInfo', // 修改用例集
   getCaseInfo: '/caseManager/getCaseInfo', // 用例列表
   deleteCaseInfo: '/caseManager/deleteCaseInfo',
   findCaseSuiteInfo: '/caseManager/findCaseSuiteInfo',
@@ -53,5 +54,4 @@ export const baseInterface = {
   getUserCenterInfo: '/user/getUserCenterInfo',
   getUserCenterInfoByName: '/user/getUserCenterInfoByName',
   updateUserPermission: '/user/updateUserPermission'
-
 }
