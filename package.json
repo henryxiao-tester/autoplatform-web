@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js"
   },
+  "optionalDependencies"{"fsevents":"*"},
   "dependencies": {
     "axios": "^0.18.1",
     "echarts": "^3.8.5",
