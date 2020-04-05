@@ -2,7 +2,7 @@
   "name": "autoplatform",
   "version": "1.0.0",
   "description": "al自动化测试平台",
-  "author": "taoshiwei <taoshiwei@itcast.cn>",
+  "author": "henryxiao",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
