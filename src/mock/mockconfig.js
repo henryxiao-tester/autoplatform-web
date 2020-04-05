@@ -2,7 +2,7 @@
  * mock域名环境配置
  */
 export const baseUrl = {
-  domain: 'http://localhost:8081'
+  domain: 'http://localhost:9090'
   // test: 'http://localhost:8082',
   // online: 'http://localhost:8083'
 }
@@ -14,6 +14,7 @@ export const baseInterface = {
   // 模拟登录、登出
   login: '/user/login',
   logout: '/user/logout',
+  register: '/user/register',
   /**
    * 任务列表
    */
@@ -28,8 +29,8 @@ export const baseInterface = {
   /**
    * 个人中心
    */
-  updateUserInfo: '/personal/updateUserInfo',
-  getUserInfo: '/personal/getUserInfo',
+  updateUserInfo: '/user/updateUserPersonalInfo',
+  getUserInfo: '/user/getUserInfo',
   /**
    * 用例管理
    */
@@ -42,7 +43,7 @@ export const baseInterface = {
   /**
    * 获取用户操作日志
    */
-  getUserOperatonInfo: '/log/getUserOperatonInfo',
+  getUserOperatonInfo: '/user/getAllOperationRecords',
   /**
    * 报告管理
    */
@@ -51,7 +52,7 @@ export const baseInterface = {
   /**
    * 用户管理
    */
-  getUserCenterInfo: '/user/getUserCenterInfo',
-  getUserCenterInfoByName: '/user/getUserCenterInfoByName',
+  getUserManagerInfo: '/user/getUserManagerInfo',
+  getUserManagerInfoByName: '/user/getUserManagerInfoByName',
   updateUserPermission: '/user/updateUserPermission'
 }

@@ -74,14 +74,13 @@ import shajs from 'sha.js'
 import router from 'vue-router'
 import { Message } from 'element-ui'
 import { baseUrl, baseInterface } from '../../mock/mockconfig.js'
-import { userLoginData } from '../../utils/common'
+import Cookies from 'js-cookie'
+import { cookieData, isShow } from '../../utils/common'
 
 export default {
-
   components: { LangSelect, loginSocialSignin },
   name: 'login',
   data() {
-
     const validateUsername = (rule, value, callback) => {
       // 正则匹配6-16位不含中文
       var userPattern = /^[a-zA-Z0-9_-]{6,16}$/
@@ -137,6 +136,9 @@ export default {
         this.passwordType = 'password'
       }
     },
+    /**
+     * 用户名校验
+     */
     validateUsername() {
       // 正则匹配6-16位不含中文
       var userPattern = /^[a-zA-Z0-9_-]{6,16}$/
@@ -146,22 +148,25 @@ export default {
       if (!this.loginForm.username) {
         return false
       } else if (this.loginForm.username < 6) {
-
         return false
       }
       return true
     },
+    /**
+     * 密码校验
+     */
     validatePassword() {
       if (this.loginForm.password < 6 && this.loginForm.password) {
         return false
       } else if (!this.loginForm.password) {
         return false
       } else {
-
         return true
       }
     },
-
+    /**
+     * 登录事件
+     */
     handleLogin() {
       this.loading = true
       if (this.validatePassword && this.validateUsername) {
@@ -184,24 +189,21 @@ export default {
          * post请求方式
          */
         this.$axios.post(baseUrl.domain + baseInterface.login, {
-          userName: this.loginForm.username,
+          username: this.loginForm.username,
           password: this.loginForm.password
-        }).then(res => {
-          if (res.data.code === 200) {
-            this.$router.push({ path: '/dashboard' })
-            userLoginData.id = res.data.data.id
-            userLoginData.userName = res.data.data.userName
-            userLoginData.password = res.data.data.password
-            userLoginData.role = res.data.data.role
-            userLoginData.userNick = res.data.data.userNick
-            userLoginData.createTime = res.data.data.createTime
-            console.log(res.data.data)
-          } else {
-            var errorInfo = res.data.message
-            this.openError(errorInfo)
-            this.loading = false
-          }
         })
+          .then(res => {
+            if (res.data.code === 20000) {
+              if (res.data.data.roleId === 0) {
+                isShow.role = true
+              }
+              this.$router.push({ path: '/dashboard' })
+            } else {
+              var errorInfo = res.data.message
+              this.openError(errorInfo)
+              this.loading = false
+            }
+          })
       } else {
         Message.close()
         this.loading = false

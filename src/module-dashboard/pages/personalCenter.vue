@@ -66,6 +66,8 @@
 <script>
 import { userLoginData } from '../../utils/common.js'
 import { baseUrl, baseInterface } from '../../mock/mockconfig'
+import { formatTime, parseTime } from '../../utils/index.js'
+import { getUserInfos } from '../../api/base/api'
 
 export default {
   data() {
@@ -103,15 +105,15 @@ export default {
     },
     getUserInfo() {
       this.$axios.post(baseUrl.domain + baseInterface.getUserInfo, {
-
       }).then(res => {
-        if (res.data.code === 200) {
+        if (res.data.code === 20000) {
           this.flag = true
-          this.id = res.data.data.id
-          this.userName = res.data.data.userName
+          this.id = res.data.data.uid
+          this.userName = res.data.data.username
           this.password = res.data.data.password
           this.role = res.data.data.role
-          this.createTime = res.data.data.createTime
+          let time = parseTime(res.data.data.createTime, '{y}-{m}-{d} {h}:{i}:{s}')
+          this.createTime = time
           this.userNick = res.data.data.userNick
         } else {
           this.openWarning(res.data.message, 'error')
@@ -120,13 +122,13 @@ export default {
     },
     updateUserInfo() {
       this.$axios.post(baseUrl.domain + baseInterface.updateUserInfo, {
-        id: '',
-        userNick: '',
-        password: ''
+        userNick: this.form.userNick,
+        password: this.form.password
       }).then(res => {
-        if (res.data.code === 200) {
+        if (res.data.code === 20000) {
           this.dialogFormVisible = false
           this.openWarning(res.data.message, 'success')
+          this.getUserInfo()
         } else {
           this.openWarning(res.data.message, 'error')
         }
@@ -139,7 +141,6 @@ export default {
       })
     }
   },
-
   created() {
     this.getUserInfo()
   }

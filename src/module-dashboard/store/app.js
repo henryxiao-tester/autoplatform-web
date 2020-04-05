@@ -22,10 +22,14 @@ const app = {
     }
   },
   actions: {
-    toggleSideBar({ commit }) {
+    toggleSideBar({
+      commit
+    }) {
       commit('TOGGLE_SIDEBAR')
     },
-    setLanguage({ commit }, language) {
+    setLanguage({
+      commit
+    }, language) {
       commit('SET_LANGUAGE', language)
     }
   }

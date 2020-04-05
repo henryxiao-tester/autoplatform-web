@@ -1,18 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '@/store'
-import {
-  Message
-} from 'element-ui'
 import NProgress from 'nprogress'
 import Layout from '@/module-dashboard/pages/layout'
-import {
-  getToken
-} from '@/utils/auth'
-import {
-  hasPermissionPoint,
-  hasPermission
-} from '@/utils/permission'
 
 // 定义
 const _import = require('./import_' + process.env.NODE_ENV) // 懒加载 导包
@@ -38,11 +27,6 @@ export const constantRouterMap = [{
   {
     path: '/404',
     component: _import('dashboard/pages/404'),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: _import('dashboard/pages/401'),
     hidden: true
   },
   {
@@ -163,7 +147,6 @@ let router = new Router({
 // 路由拦截器
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  console.log(to.path)
   if (whiteList.indexOf(to.path) !== -1) {
     // 在免登录白名单，直接进入
     next()

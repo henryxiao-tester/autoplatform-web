@@ -46,9 +46,9 @@
                     />
                     <div>
                       <p>
-                        <span class="col">{{item.operator+item.description}}</span>
+                        <span class="col">{{item.userNick+item.operationType}}</span>
                       </p>
-                      <p>2018-07-21 15:21:38</p>
+                      <p>{{item.createTime}}</p>
                     </div>
                   </div>
                 </li>
@@ -158,7 +158,8 @@ import DateIndex from './../components/DateIndex'
 import { list, links, addLinks } from '@/api/base/notices'
 import { getUserOperatonInfoLists } from '../../mock/mock'
 import { baseUrl, baseInterface } from '../../mock/mockconfig'
-let _this = null
+import { formatTime, parseTime } from '../../utils/index.js'
+
 export default {
   name: 'dashboard',
   components: {
@@ -189,8 +190,39 @@ export default {
       this.$axios.post(baseUrl.domain + baseInterface.getUserOperatonInfo, {
 
       }).then(res => {
-        this.datas = res.data.data
-        console.log(this.datas)
+        if (res.data.data !== undefined) {
+          this.datas = res.data.data
+          for (let index = 0; index < this.datas.length; index++) {
+            let time = parseTime(res.data.data[index].createTime, '{y}-{m}-{d} {h}:{i}:{s}')
+            this.datas[index].createTime = time
+
+            switch (res.data.data[index].operationType) {
+              case 1:
+                this.datas[index].operationType = '执行了任务'
+                break
+              case 2:
+                this.datas[index].operationType = '删除了任务'
+                break
+              case 3:
+                this.datas[index].operationType = '修改了任务'
+                break
+              case 4:
+                this.datas[index].operationType = '添加了用例'
+                break
+              case 5:
+                this.datas[index].operationType = '删除了用例'
+                break
+              case 6:
+                this.datas[index].operationType = '修改了用例'
+                break
+              default:
+                break
+            }
+          }
+
+        } else {
+          this.datas = ''
+        }
       })
     }
   },

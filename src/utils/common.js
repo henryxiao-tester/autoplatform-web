@@ -61,3 +61,7 @@ export const userLoginData = {
   userNick: '',
   createTime: ''
 }
+// 用户管理权限显示
+export const isShow = {
+  role: false
+}

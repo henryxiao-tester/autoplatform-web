@@ -46,7 +46,7 @@
           <i class="el-icon-setting"></i>
           <span slot="title">个人中心</span>
         </el-menu-item>
-        <el-menu-item index="/user/userCenter">
+        <el-menu-item index="/user/userCenter" v-show="isShow">
           <i class="el-icon-edit"></i>
           <span slot="title">用户管理</span>
         </el-menu-item>
@@ -56,11 +56,14 @@
 </template>
 
 <script>
+import { isShow } from '../../utils/common.js'
+
 export default {
   data() {
     // var getClickEvent = document.querySelector('')
     return {
-      index: ''
+      index: '',
+      isShow: isShow.role
     }
   },
   methods: {

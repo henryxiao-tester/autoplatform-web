@@ -1,10 +1,10 @@
 /**
  * 解析时间
- * 
+ *
  * @export
- * @param {any} time 
- * @param {any} cFormat 
- * @returns 
+ * @param {any} time
+ * @param {any} cFormat
+ * @returns
  */
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
@@ -20,7 +20,7 @@ export function parseTime(time, cFormat) {
   }
   const formatObj = {
     y: date.getFullYear(),
-    m: date.getMonth() + 1,
+    m: date.getMonth(),
     d: date.getDate(),
     h: date.getHours(),
     i: date.getMinutes(),
@@ -42,11 +42,11 @@ export function parseTime(time, cFormat) {
 
 /**
  * 格式化时间
- * 
+ *
  * @export
- * @param {any} time 
- * @param {any} option 
- * @returns 
+ * @param {any} time
+ * @param {any} option
+ * @returns
  */
 export function formatTime(time, option) {
   time = +time * 1000
@@ -84,10 +84,10 @@ export function formatTime(time, option) {
 
 /**
  * 格式化时间
- * 
+ *
  * @export
- * @param {any} url 
- * @returns 
+ * @param {any} url
+ * @returns
  */
 export function getQueryObject(url) {
   url = url == null ? window.location.href : url
@@ -148,20 +148,20 @@ export function param2Obj(url) {
   }
   return JSON.parse(
     '{"' +
-      decodeURIComponent(search)
-        .replace(/"/g, '\\"')
-        .replace(/&/g, '","')
-        .replace(/=/g, '":"') +
-      '"}'
+    decodeURIComponent(search)
+    .replace(/"/g, '\\"')
+    .replace(/&/g, '","')
+    .replace(/=/g, '":"') +
+    '"}'
   )
 }
 
 /**
  * html转文字
- * 
+ *
  * @export
- * @param {any} val 
- * @returns 
+ * @param {any} val
+ * @returns
  */
 export function html2Text(val) {
   const div = document.createElement('div')
@@ -220,8 +220,7 @@ export function toggleClass(element, className) {
   element.className = classString
 }
 
-export const pickerOptions = [
-  {
+export const pickerOptions = [{
     text: '今天',
     onClick(picker) {
       const end = new Date()
@@ -270,7 +269,7 @@ export function getTime(type) {
 export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
-  const later = function() {
+  const later = function () {
     // 据上一次触发时间间隔
     const last = +new Date() - timestamp
 
@@ -287,7 +286,7 @@ export function debounce(func, wait, immediate) {
     }
   }
 
-  return function(...args) {
+  return function (...args) {
     context = this
     timestamp = +new Date()
     const callNow = immediate && !timeout

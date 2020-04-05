@@ -44,11 +44,15 @@
       <div>
         <el-button type="text" @click="open">点击打开 Message Box</el-button>
       </div>
+      <div>
+        <el-button :plain="false" v-show="false" @click="openError"></el-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { baseUrl, baseInterface } from '../../mock/mockconfig'
 export default {
   data() {
     var checkName = (rule, value, callback) => {
@@ -124,15 +128,31 @@ export default {
       })
     },
     submitForm(formName) {
+
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log('执行成功')
-          this.open()
+          this.$axios.post(baseUrl.domain + baseInterface.register, {
+            username: this.ruleForm.userName,
+            password: this.ruleForm.pass,
+            checkPwd: this.ruleForm.checkPass,
+            userNick: this.ruleForm.userNick
+          }).then(res => {
+            if (res.data.code === 20000) {
+              this.open()
+            } else {
+              this.openError(res.data.message, 'error')
+            }
+          })
+
         } else {
           console.log('error submit!!')
           return false
         }
       })
+    },
+    // 错误消息提示弹框
+    openError(message) {
+      this.$message.error(message)
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()

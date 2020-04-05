@@ -6,11 +6,7 @@
       <layout-tags></layout-tags>
       <layout-app-main></layout-app-main>
       <div class="bottom">
-        <p>
-          <!-- <a href="https://github.com/itheima2017/vue-element-admin-itheima" target="_blank">
-            <svg-icon icon-class="github"></svg-icon>
-          </a>-->
-        </p>
+        <p></p>
         <p>
           copyright
           <svg-icon icon-class="copyright"></svg-icon>2020 Akulaku Inc. All rights reserved.

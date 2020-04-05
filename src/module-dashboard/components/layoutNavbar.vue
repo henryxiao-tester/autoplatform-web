@@ -40,7 +40,7 @@
       <el-dropdown class="item">
         <span class="el-dropdown-link">
           <img class="avatar" src="../assets/bigUserHeader.png" />
-          {{userNick}}
+          {{ userNick }}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -56,6 +56,9 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <div>
+      <el-button :plain="false" v-show="false" @click="openError"></el-button>
+    </div>
   </el-menu>
 </template>
 
@@ -68,7 +71,8 @@ import Screenfull from '@/components/Screenfull'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemePicker'
 import { search } from '@/api/base/menus'
-import { userLoginData } from '../../utils/common'
+import { userLoginData, isShow } from '../../utils/common'
+import { baseUrl, baseInterface } from '../../mock/mockconfig'
 
 export default {
   name: 'layoutNavBar',
@@ -96,9 +100,7 @@ export default {
     personalCenter() {
       this.$router.push({ path: '/personalCenter' })
     },
-    toggleSideBar() {
-
-    },
+    toggleSideBar() { },
     logout() {
       this.$router.push({ path: '/login' })
       location.reload()
@@ -135,14 +137,35 @@ export default {
         message: `选取了 ${item.value}`,
         type: 'success'
       })
+    },
+    initPersonalInfo() {
+      this.$axios
+        .post(baseUrl.domain + baseInterface.getUserInfo, {})
+        .then(res => {
+          if (res.data.code === 20000) {
+            this.userNick = res.data.data.userNick
+          } else {
+            this.openError(res.data.message, 'error')
+          }
+        })
+    },
+    // 错误消息提示弹框
+    openError(message) {
+      this.$message.error(message)
+    },
+    showPwd() {
+      if (this.passwordType === 'password') {
+        this.passwordType = ''
+      } else {
+        this.passwordType = 'password'
+      }
     }
   },
   mounted() {
     this.restaurants = search()
-
   },
   created() {
-    this.userNick = userLoginData.userNick
+    this.initPersonalInfo()
   }
 }
 </script>
