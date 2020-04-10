@@ -13,6 +13,7 @@ import 'font-awesome/css/font-awesome.css' // font-awesome
 import axios from 'axios'
 import dashboard from '@/module-dashboard/' // 面板
 import tools from './utils/common.js'
+import echarts from 'echarts'
 
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -32,7 +33,6 @@ axios.interceptors.response.use(
   response => {
     // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
     // 否则的话抛出错误
-    console.log(response.data.code)
     if (response.data.code) {
       switch (response.data.code) {
         case 40011:
@@ -117,6 +117,7 @@ axios.interceptors.response.use(
 
 Vue.prototype.$tools = tools
 Vue.prototype.$axios = axios
+Vue.prototype.$echarts = echarts
 
 Vue.use(tools)
 Vue.use(dashboard, store)

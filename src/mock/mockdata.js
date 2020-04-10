@@ -61,8 +61,8 @@ export const getUserOperatonInfoLists = function () {
   for (let index = 0; index < 10; index++) {
     getUserOperatonInfoList.push({
       id: '322231211',
-      description: '执行了用户登录任务',
-      operator: 'henry',
+      userNick: '肖龙',
+      operationType: 2,
       createTime: '2020-03-23'
     })
 
@@ -93,12 +93,12 @@ export const getReportInfoLists = function () {
 const getUserCenterInfoList = []
 export const getUserCenterInfoLists = function () {
   getUserCenterInfoList.length = 0
-  for (let index = 0; index < 50; index++) {
+  for (let index = 0; index < 20; index++) {
     getUserCenterInfoList.push({
-      userName: 'henryxiao',
+      username: 'henryxiao',
       userNick: '肖龙',
-      role: '普通用户',
-      status: '禁用',
+      roleId: 1,
+      status: 1,
       createTime: '2020-03-25 13:00:00',
       updateTime: '2020-03-25 13:00:00'
     })

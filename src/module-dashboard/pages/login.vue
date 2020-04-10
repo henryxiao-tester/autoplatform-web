@@ -171,21 +171,6 @@ export default {
       this.loading = true
       if (this.validatePassword && this.validateUsername) {
         /**
-         * get请求方式
-         */
-        //   this.$axios.get(baseUrl.domain + baseInterface.login).then(res => {
-        //     if (res.data.code === 200) {
-        //       this.$router.push({ path: '/dashboard' })
-        //     } else {
-        //       var errorInfo = res.data.message
-        //       this.openError(errorInfo)
-        //       this.loading = false
-        //     }
-
-        //   })
-        // }
-
-        /**
          * post请求方式
          */
         this.$axios.post(baseUrl.domain + baseInterface.login, {

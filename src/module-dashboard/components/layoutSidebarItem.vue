@@ -46,9 +46,13 @@
           <i class="el-icon-setting"></i>
           <span slot="title">个人中心</span>
         </el-menu-item>
-        <el-menu-item index="/user/userCenter" v-show="isShow">
+        <el-menu-item index="/user/userCenter" v-show="true">
           <i class="el-icon-edit"></i>
           <span slot="title">用户管理</span>
+        </el-menu-item>
+        <el-menu-item index="/board/boardManager">
+          <i class="el-icon-view"></i>
+          <span slot="title">看板管理</span>
         </el-menu-item>
       </el-menu>
     </el-col>
@@ -60,7 +64,6 @@ import { isShow } from '../../utils/common.js'
 
 export default {
   data() {
-    // var getClickEvent = document.querySelector('')
     return {
       index: '',
       isShow: isShow.role
@@ -70,16 +73,9 @@ export default {
     handleOpen(key, keyPath) {
       this.index = key
     },
-    handleClose(key, keyPath) {
-      // console.log(key)
-      // console.log(keyPath)
-    },
-    close(index) {
-
-    }
+    handleClose(key, keyPath) { },
+    close(index) { }
   }
-
 }
 </script>
-<style >
-</style>
+<style></style>

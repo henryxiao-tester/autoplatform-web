@@ -144,6 +144,7 @@ export default {
         .then(res => {
           if (res.data.code === 20000) {
             this.userNick = res.data.data.userNick
+
           } else {
             this.openError(res.data.message, 'error')
           }

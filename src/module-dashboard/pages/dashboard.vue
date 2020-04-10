@@ -4,7 +4,10 @@
       <div class="clearfix">
         <div class="fl headL">
           <div class="headImg">
-            <img src="../../assets/head.png" style="width: 100px;border-radius: 50%" />
+            <img
+              src="../../assets/head.png"
+              style="width: 100px;border-radius: 50%"
+            />
           </div>
           <div class="headInfoTip">
             <p class="firstChild">早安，测试同学，祝你开心每一天！</p>
@@ -37,7 +40,11 @@
           <div class="advContent">
             <div class="title">测试操作通知</div>
             <div class="contentItem">
-              <ul class="noticeList" v-for="(item,key) in datas.slice(0,6)" :key="key">
+              <ul
+                class="noticeList"
+                v-for="(item, key) in datas.slice(0, 6)"
+                :key="key"
+              >
                 <li>
                   <div class="item">
                     <img
@@ -46,9 +53,11 @@
                     />
                     <div>
                       <p>
-                        <span class="col">{{item.userNick+item.operationType}}</span>
+                        <span class="col">{{
+                          item.userNick + item.operationType
+                        }}</span>
                       </p>
-                      <p>{{item.createTime}}</p>
+                      <p>{{ item.createTime }}</p>
                     </div>
                   </div>
                 </li>
@@ -99,21 +108,15 @@
             <div class="performInfo">
               <ul class="clearfix">
                 <li>
-                  <p class="radioInfo">
-                    <em class="user"></em>56
-                  </p>
+                  <p class="radioInfo"><em class="user"></em>56</p>
                   <p>Pass</p>
                 </li>
                 <li>
-                  <p class="radioInfo">
-                    <em class="department"></em>0
-                  </p>
+                  <p class="radioInfo"><em class="department"></em>0</p>
                   <p>Fail</p>
                 </li>
                 <li>
-                  <p class="radioInfo">
-                    <em class="company"></em>100%
-                  </p>
+                  <p class="radioInfo"><em class="company"></em>100%</p>
                   <p>PassRate</p>
                 </li>
               </ul>
@@ -135,7 +138,9 @@
                 </a>
               </el-col>
               <el-col :span="8">
-                <a href="http://testyapi.akulaku.com/project/1132/interface/api">
+                <a
+                  href="http://testyapi.akulaku.com/project/1132/interface/api"
+                >
                   <span class="icon iconHelp"></span>
                   <p>相关接口文档</p>
                 </a>
@@ -153,15 +158,15 @@
 </template>
 
 <script>
-import BarChart from './../components/dashboardAreaChart'
-import DateIndex from './../components/DateIndex'
-import { list, links, addLinks } from '@/api/base/notices'
-import { getUserOperatonInfoLists } from '../../mock/mock'
-import { baseUrl, baseInterface } from '../../mock/mockconfig'
-import { formatTime, parseTime } from '../../utils/index.js'
+import BarChart from "./../components/dashboardAreaChart";
+import DateIndex from "./../components/DateIndex";
+import { list, links, addLinks } from "@/api/base/notices";
+import { getUserOperatonInfoLists } from "../../mock/mock";
+import { baseUrl, baseInterface } from "../../mock/mockconfig";
+import { formatTime, parseTime } from "../../utils/index.js";
 
 export default {
-  name: 'dashboard',
+  name: "dashboard",
   components: {
     DateIndex,
     BarChart
@@ -171,7 +176,7 @@ export default {
       dataList: [],
       linkList: [],
       datas: []
-    }
+    };
   },
   computed: {
     // filteredItems: function() {
@@ -180,61 +185,67 @@ export default {
   },
   methods: {
     open1() {
-      const h = this.$createElement
+      const h = this.$createElement;
       this.$notify({
-        title: '技术联系人',
-        message: h('i', { style: 'color: teal' }, '唐三：18902494883   亨瑞：15879468113')
-      })
+        title: "技术联系人",
+        message: h(
+          "i",
+          { style: "color: teal" },
+          "唐三：18902494883   亨瑞：15879468113"
+        )
+      });
     },
     initLog() {
-      this.$axios.post(baseUrl.domain + baseInterface.getUserOperatonInfo, {
+      this.$axios
+        .post(baseUrl.domain + baseInterface.getUserOperatonInfo, {})
+        .then(res => {
+          if (res.data.data !== undefined) {
+            this.datas = res.data.data;
+            for (let index = 0; index < this.datas.length; index++) {
+              let time = parseTime(
+                res.data.data[index].createTime,
+                "{y}-{m}-{d} {h}:{i}:{s}"
+              );
+              this.datas[index].createTime = time;
 
-      }).then(res => {
-        if (res.data.data !== undefined) {
-          this.datas = res.data.data
-          for (let index = 0; index < this.datas.length; index++) {
-            let time = parseTime(res.data.data[index].createTime, '{y}-{m}-{d} {h}:{i}:{s}')
-            this.datas[index].createTime = time
-
-            switch (res.data.data[index].operationType) {
-              case 1:
-                this.datas[index].operationType = '执行了任务'
-                break
-              case 2:
-                this.datas[index].operationType = '删除了任务'
-                break
-              case 3:
-                this.datas[index].operationType = '修改了任务'
-                break
-              case 4:
-                this.datas[index].operationType = '添加了用例'
-                break
-              case 5:
-                this.datas[index].operationType = '删除了用例'
-                break
-              case 6:
-                this.datas[index].operationType = '修改了用例'
-                break
-              default:
-                break
+              switch (res.data.data[index].operationType) {
+                case 1:
+                  this.datas[index].operationType = "执行了任务";
+                  break;
+                case 2:
+                  this.datas[index].operationType = "删除了任务";
+                  break;
+                case 3:
+                  this.datas[index].operationType = "修改了任务";
+                  break;
+                case 4:
+                  this.datas[index].operationType = "添加了用例";
+                  break;
+                case 5:
+                  this.datas[index].operationType = "删除了用例";
+                  break;
+                case 6:
+                  this.datas[index].operationType = "修改了用例";
+                  break;
+                default:
+                  break;
+              }
             }
+          } else {
+            this.datas = "";
           }
-
-        } else {
-          this.datas = ''
-        }
-      })
+        });
     }
   },
   // 挂载结束
-  mounted: function () { },
+  mounted: function() {},
   // 创建完毕状态
-  created: function () {
-    this.initLog()
+  created: function() {
+    this.initLog();
   },
   // 组件更新
-  updated: function () { }
-}
+  updated: function() {}
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

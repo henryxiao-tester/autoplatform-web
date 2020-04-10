@@ -131,6 +131,20 @@ export const constantRouterMap = [{
         noCache: true
       }
     }]
+  }, {
+    path: '/board',
+    component: Layout,
+    redirect: '',
+    children: [{
+      path: 'boardManager',
+      component: _import('board-manager/pages/index'),
+      name: '看板管理',
+      meta: {
+        title: '看板管理',
+        icon: 'dashboard',
+        noCache: true
+      }
+    }]
   }
 ]
 

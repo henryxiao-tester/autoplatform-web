@@ -54,5 +54,16 @@ export const baseInterface = {
    */
   getUserManagerInfo: '/user/getUserManagerInfo',
   getUserManagerInfoByName: '/user/getUserManagerInfoByName',
-  updateUserPermission: '/user/updateUserPermission'
+  updateUserPermission: '/user/updateUserPermission',
+
+  /**
+   * 看板
+   */
+  getBoardCaseNums: '/board/getBoardCaseNums',
+  getBoardDataForTaskOne: '/board/getBoardDataForTaskOne',
+  getBoardDataForTaskTwo: '/board/getBoardDataForTaskTwo',
+  getBoardDataForTaskThree: '/board/getBoardDataForTaskThree',
+  getBoardDataForTaskFour: '/board/getBoardDataForTaskFour',
+  getBoardDataForTaskFive: '/board/getBoardDataForTaskFive',
+  getBoardDataForTaskSix: '/board/getBoardDataForTaskSix'
 }
