@@ -20,7 +20,7 @@
         </div>
         <div style="margin: 20px;">
           用户姓名：
-          <span>{{userNick}}</span>
+          <span>henryxiao</span>
         </div>
         <div style="margin: 20px;">
           用户角色：
@@ -67,7 +67,6 @@
 import { userLoginData } from '../../utils/common.js'
 import { baseUrl, baseInterface } from '../../mock/mockconfig'
 import { formatTime, parseTime } from '../../utils/index.js'
-import { getUserInfos } from '../../api/base/api'
 
 export default {
   data() {
@@ -76,7 +75,7 @@ export default {
       userName: '',
       password: '',
       role: null,
-      userNick: '',
+      userNick: 'henryxiao',
       createTime: '',
       dialogTableVisible: false,
       dialogFormVisible: false,

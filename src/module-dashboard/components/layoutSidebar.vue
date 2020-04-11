@@ -9,7 +9,7 @@
     >
       <router-link to="/dashboard">
         <div class="sidebar-logo">
-          <img src="../assets/al_logo.png" style="width: 100px;height:70px;border-radius: 20px" />
+          <img src="../assets/test-logo.jpg" style="width: 100px;height:70px;border-radius: 10px" />
         </div>
       </router-link>
       <sidebar-item :routes="permission_routers"></sidebar-item>

@@ -1,7 +1,7 @@
 {
   "name": "autoplatform",
   "version": "1.0.0",
-  "description": "al自动化测试平台",
+  "description": "自动化测试平台",
   "author": "henryxiao",
   "private": true,
   "scripts": {

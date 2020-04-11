@@ -27,7 +27,7 @@ export const getCaseSuiteInfo = function () {
   getCaseSuiteInfoList.length = 0
   for (let index = 0; index < 30; index++) {
     getCaseSuiteInfoList.push({
-      packageName: 'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.bills.PrepaymentTestCase',
+      packageName: 'com.auto.interfaceautotest.cases.PrepaymentTestCase',
       status: 0
     })
 
@@ -43,7 +43,7 @@ export const getCaseInfoList = function () {
     getCaseInfoLists.push({
       id: '322231211',
       caseName: '用户登录模块用例',
-      caseSuite: ['com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase', ' com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase'],
+      caseSuite: ['com.auto.interfaceautotest.cases.PrepaymentTestCase', 'com.auto.interfaceautotest.cases.PrepaymentTestCase '],
       description: '首次录入用户模块',
       author: 'henry',
       createTime: '2020-03-23',
@@ -61,7 +61,7 @@ export const getUserOperatonInfoLists = function () {
   for (let index = 0; index < 10; index++) {
     getUserOperatonInfoList.push({
       id: '322231211',
-      userNick: '肖龙',
+      userNick: 'henryxiao',
       operationType: 2,
       createTime: '2020-03-23'
     })
@@ -96,7 +96,7 @@ export const getUserCenterInfoLists = function () {
   for (let index = 0; index < 20; index++) {
     getUserCenterInfoList.push({
       username: 'henryxiao',
-      userNick: '肖龙',
+      userNick: 'henryxiao',
       roleId: 1,
       status: 1,
       createTime: '2020-03-25 13:00:00',

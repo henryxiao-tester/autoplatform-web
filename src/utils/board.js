@@ -22,7 +22,7 @@ export function MapOne(myCharts, datas) {
       }
     },
     series: [{
-      name: '黄金流测试结果分布',
+      name: '登录测试结果分布',
       type: 'pie',
       // 这个radius可以修改饼形图的大小
       // radius 第一个值是内圆的半径 第二个值是外圆的半径

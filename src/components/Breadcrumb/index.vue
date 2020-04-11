@@ -1,8 +1,5 @@
 <template>
-  <div class="app-breadcrumb">
-    Akulaku电子商务技术有限公司
-    <!-- <span class="breadBtn">体验版</span> -->
-  </div>
+  <div class="app-breadcrumb">XXXXXXX技术有限公司</div>
 </template>
 
 <script>

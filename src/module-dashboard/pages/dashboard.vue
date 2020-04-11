@@ -4,10 +4,7 @@
       <div class="clearfix">
         <div class="fl headL">
           <div class="headImg">
-            <img
-              src="../../assets/head.png"
-              style="width: 100px;border-radius: 50%"
-            />
+            <img src="../assets/test-logo.jpg" style="width: 100px;border-radius: 50%" />
           </div>
           <div class="headInfoTip">
             <p class="firstChild">早安，测试同学，祝你开心每一天！</p>
@@ -40,11 +37,7 @@
           <div class="advContent">
             <div class="title">测试操作通知</div>
             <div class="contentItem">
-              <ul
-                class="noticeList"
-                v-for="(item, key) in datas.slice(0, 6)"
-                :key="key"
-              >
+              <ul class="noticeList" v-for="(item, key) in datas.slice(0, 6)" :key="key">
                 <li>
                   <div class="item">
                     <img
@@ -53,9 +46,11 @@
                     />
                     <div>
                       <p>
-                        <span class="col">{{
+                        <span class="col">
+                          {{
                           item.userNick + item.operationType
-                        }}</span>
+                          }}
+                        </span>
                       </p>
                       <p>{{ item.createTime }}</p>
                     </div>
@@ -108,15 +103,21 @@
             <div class="performInfo">
               <ul class="clearfix">
                 <li>
-                  <p class="radioInfo"><em class="user"></em>56</p>
+                  <p class="radioInfo">
+                    <em class="user"></em>56
+                  </p>
                   <p>Pass</p>
                 </li>
                 <li>
-                  <p class="radioInfo"><em class="department"></em>0</p>
+                  <p class="radioInfo">
+                    <em class="department"></em>0
+                  </p>
                   <p>Fail</p>
                 </li>
                 <li>
-                  <p class="radioInfo"><em class="company"></em>100%</p>
+                  <p class="radioInfo">
+                    <em class="company"></em>100%
+                  </p>
                   <p>PassRate</p>
                 </li>
               </ul>
@@ -130,17 +131,13 @@
           <div class="sideLink">
             <el-row>
               <el-col :span="8">
-                <a
-                  href="http://wiki.al.com/pages/viewpage.action?token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjUzYzY2YWFiNTBjZmRkOTFhMTQzNTBhNjY0ODJkYjM4MDBjODNjNjMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODg2Mzk4OTQzNjI2LXRiMjltamNnOTYxMGduZmwxbm1qb2N1bjY5dWViaHJmLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiODg2Mzk4OTQzNjI2LXRiMjltamNnOTYxMGduZmwxbm1qb2N1bjY5dWViaHJmLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAwNTcxODM1MzM2MDQyNzkxMTM0IiwiaGQiOiJha3VsYWt1LmNvbSIsImVtYWlsIjoieGlhb2xvbmdAYWt1bGFrdS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6ImR6SWdzN1dkSE5EYU5ncjU2SFRhUlEiLCJuYW1lIjoi6IKW6b6ZIiwicGljdHVyZSI6Imh0dHBzOi8vbGg1Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tZG8xNW1vYjkzRTQvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQUtGMDVuQmRJZXJYejBmU3I2R0RYV1c2TDJBRS1PSGN6dy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi6b6ZIiwiZmFtaWx5X25hbWUiOiLogpYiLCJsb2NhbGUiOiJlbiIsImlhdCI6MTU4NTAzODExMSwiZXhwIjoxNTg1MDQxNzExLCJqdGkiOiIxMzMxNDgzOTg1Y2RlM2FmN2YwZDMyMDcwMDBiMmNkNWZhZDNmOGY1In0.QGVlzPH4Y6qpa3U777eC3_rj9RXSW0V22_Phg4FD2o1-Ph-VwET29tLjzUPUW0XsqbzaiB-GKfCVC9iQub62Ls9b4J1QeOrW0-oz0-Rb9mswiCykG1fnK2TfP4_3OM4TxZkRm4E_AmaEiwoe8He9lGcgM7IwTF7YpWTKwK21njzq2h-28mowPQ00IX8gBgxeSjUOjloDKth7t6TnlQQ_rX-6pRwFydyYnzfkhLoCLJd2vFnG2tVea4X1zQFuqBgmM88rW3ZFPNVbJdwEdwdMaEBJC-OO1P2znNU_f4vrdm9qFqnxt3Zgmvf72K9mluRHgf2H-NE2bCO1fhPjxKjAsw&pageId=38307958"
-                >
+                <a href="#">
                   <span class="icon iconGuide"></span>
                   <p>操作手册</p>
                 </a>
               </el-col>
               <el-col :span="8">
-                <a
-                  href="http://testyapi.akulaku.com/project/1132/interface/api"
-                >
+                <a href="#">
                   <span class="icon iconHelp"></span>
                   <p>相关接口文档</p>
                 </a>
@@ -158,15 +155,15 @@
 </template>
 
 <script>
-import BarChart from "./../components/dashboardAreaChart";
-import DateIndex from "./../components/DateIndex";
-import { list, links, addLinks } from "@/api/base/notices";
-import { getUserOperatonInfoLists } from "../../mock/mock";
-import { baseUrl, baseInterface } from "../../mock/mockconfig";
-import { formatTime, parseTime } from "../../utils/index.js";
+import BarChart from './../components/dashboardAreaChart'
+import DateIndex from './../components/DateIndex'
+import { list, links, addLinks } from '@/api/base/notices'
+import { getUserOperatonInfoLists } from '../../mock/mock'
+import { baseUrl, baseInterface } from '../../mock/mockconfig'
+import { formatTime, parseTime } from '../../utils/index.js'
 
 export default {
-  name: "dashboard",
+  name: 'dashboard',
   components: {
     DateIndex,
     BarChart
@@ -176,7 +173,7 @@ export default {
       dataList: [],
       linkList: [],
       datas: []
-    };
+    }
   },
   computed: {
     // filteredItems: function() {
@@ -185,67 +182,67 @@ export default {
   },
   methods: {
     open1() {
-      const h = this.$createElement;
+      const h = this.$createElement
       this.$notify({
-        title: "技术联系人",
+        title: '技术联系人',
         message: h(
-          "i",
-          { style: "color: teal" },
-          "唐三：18902494883   亨瑞：15879468113"
+          'i',
+          { style: 'color: teal' },
+          '马云：158xxxx8113   马化腾：158xxxx8113'
         )
-      });
+      })
     },
     initLog() {
       this.$axios
         .post(baseUrl.domain + baseInterface.getUserOperatonInfo, {})
         .then(res => {
           if (res.data.data !== undefined) {
-            this.datas = res.data.data;
+            this.datas = res.data.data
             for (let index = 0; index < this.datas.length; index++) {
               let time = parseTime(
                 res.data.data[index].createTime,
-                "{y}-{m}-{d} {h}:{i}:{s}"
-              );
-              this.datas[index].createTime = time;
+                '{y}-{m}-{d} {h}:{i}:{s}'
+              )
+              this.datas[index].createTime = time
 
               switch (res.data.data[index].operationType) {
                 case 1:
-                  this.datas[index].operationType = "执行了任务";
-                  break;
+                  this.datas[index].operationType = '执行了任务'
+                  break
                 case 2:
-                  this.datas[index].operationType = "删除了任务";
-                  break;
+                  this.datas[index].operationType = '删除了任务'
+                  break
                 case 3:
-                  this.datas[index].operationType = "修改了任务";
-                  break;
+                  this.datas[index].operationType = '修改了任务'
+                  break
                 case 4:
-                  this.datas[index].operationType = "添加了用例";
-                  break;
+                  this.datas[index].operationType = '添加了用例'
+                  break
                 case 5:
-                  this.datas[index].operationType = "删除了用例";
-                  break;
+                  this.datas[index].operationType = '删除了用例'
+                  break
                 case 6:
-                  this.datas[index].operationType = "修改了用例";
-                  break;
+                  this.datas[index].operationType = '修改了用例'
+                  break
                 default:
-                  break;
+                  break
               }
             }
           } else {
-            this.datas = "";
+            this.datas = ''
           }
-        });
+        })
     }
   },
   // 挂载结束
-  mounted: function() {},
+  mounted: function () { },
   // 创建完毕状态
-  created: function() {
-    this.initLog();
+  created: function () {
+    this.initLog()
   },
   // 组件更新
-  updated: function() {}
-};
+  updated: function () { }
+}
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
@@ -439,7 +436,7 @@ export default {
     display: inline-block;
     width: 76px;
     height: 76px;
-    background: url("../../assets/icon.png") no-repeat;
+    background: url('../../assets/icon.png') no-repeat;
   }
   .iconGuide {
     background-position: 0 0;

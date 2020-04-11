@@ -9,7 +9,7 @@
         <p></p>
         <p>
           copyright
-          <svg-icon icon-class="copyright"></svg-icon>2020 Akulaku Inc. All rights reserved.
+          <svg-icon icon-class="copyright"></svg-icon>2020 XXX Inc. All rights reserved.
         </p>
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/styles/mixin.scss";
+@import 'src/styles/mixin.scss';
 .app-wrapper {
   @include clearfix;
   position: relative;

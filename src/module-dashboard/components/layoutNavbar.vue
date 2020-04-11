@@ -40,7 +40,7 @@
       <el-dropdown class="item">
         <span class="el-dropdown-link">
           <img class="avatar" src="../assets/bigUserHeader.png" />
-          {{ userNick }}
+          henryxiao
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
