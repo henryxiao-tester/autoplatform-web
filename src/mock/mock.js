@@ -144,7 +144,7 @@ Mock.mock(baseUrl.domain + baseInterface.getUserInfo, 'post', (data) => {
       username: 'henry',
       password: 'sadsadsa',
       role: 1,
-      userNick: '肖龙',
+      userNick: 'henryxiao',
       createTime: '2020-03-22'
     }
   }
@@ -176,21 +176,13 @@ Mock.mock(baseUrl.domain + baseInterface.findCaseSuiteInfo, 'post', (data) => {
     code: 200,
     message: 'success',
     data: [{
-      packageName: 'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.bills.PrepaymentTestCase',
+      packageName: 'com.test.interface.LoginTestCase',
       status: 1
     }]
   }
 })
 
 Mock.mock(baseUrl.domain + baseInterface.updateCaseInfo, 'post', (data) => {
-  // const info = JSON.parse(data.body)
-  return {
-    code: 200,
-    message: 'success'
-  }
-})
-
-Mock.mock(baseUrl.domain + baseInterface.addCase, 'post', (data) => {
   // const info = JSON.parse(data.body)
   return {
     code: 200,
@@ -232,8 +224,64 @@ Mock.mock(baseUrl.domain + baseInterface.findCaseInfo, 'post', (data) => {
       id: '2132432432',
       caseName: '测试查询用户登录',
       caseSuite: [
-        'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase',
-        'com.akalaku.akulakuproject8interfaceautotest.oldGoldFlow.openapy.OpenPayOrderWithoutCouponTestCase'
+        'com.test.interface.LoginTestCase',
+        'com.test.interface.LoginTestCase'
+      ],
+      description: '查询测试效果',
+      author: 'henry',
+      createTime: '2020-03-23 12:00:00',
+      updateTime: '2020-03-11 12:00:00'
+    }]
+  }
+})
+
+/**
+ * 用例
+ */
+Mock.mock(baseUrl.domain + baseInterface.addCase, 'post', (data) => {
+  // const info = JSON.parse(data.body)
+  return {
+    code: 20000,
+    message: 'success'
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.updateCase, 'post', (data) => {
+  // const info = JSON.parse(data.body)
+  return {
+    code: 20000,
+    message: 'success'
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.deleteCase, 'post', (data) => {
+  // const info = JSON.parse(data.body)
+  return {
+    code: 20000,
+    message: 'success'
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.getAllCase, 'post', (data) => {
+  // const info = JSON.parse(data.body)
+  return {
+    code: 20000,
+    message: 'success',
+    data: getCaseInfoList()
+  }
+})
+
+Mock.mock(baseUrl.domain + baseInterface.findCaseInfoByName, 'post', (data) => {
+  // const info = JSON.parse(data.body)
+  return {
+    code: 20000,
+    message: 'success',
+    data: [{
+      id: '2132432432',
+      caseName: '测试查询用户登录',
+      caseSuite: [
+        'com.test.interface.LoginTestCase',
+        'com.test.interface.LoginTestCase'
       ],
       description: '查询测试效果',
       author: 'henry',
@@ -318,7 +366,7 @@ Mock.mock(
       data: {
         list: [{
           username: 'henryxiao',
-          userNick: '肖龙',
+          userNick: 'henryxiao',
           roleId: 1,
           status: 1,
           createTime: '2020-03-25 13:00:00',

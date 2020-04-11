@@ -34,12 +34,19 @@ export const baseInterface = {
   /**
    * 用例管理
    */
+  // 用例集
   getCaseSuiteInfo: '/caseManager/getCaseSuiteInfo', // 添加用例集获取用例
-  addCase: '/caseManager/addCase', // 添加用例集
+  addCaseSuite: '/caseManager/addCaseSuite', // 添加用例集
   updateCaseInfo: '/caseManager/updateCaseInfo', // 修改用例集
   getCaseInfo: '/caseManager/getCaseInfo', // 用例列表
   deleteCaseInfo: '/caseManager/deleteCaseInfo',
   findCaseSuiteInfo: '/caseManager/findCaseSuiteInfo',
+  // 用例
+  addCase: '/caseManager/addCase',
+  updateCase: '/caseManager/updateCase',
+  deleteCase: '/caseManager/deleteCase',
+  getAllCase: '/caseManager/getAllCase',
+  findCaseInfoByName: '/caseManager/findCaseInfoByName',
   /**
    * 获取用户操作日志
    */

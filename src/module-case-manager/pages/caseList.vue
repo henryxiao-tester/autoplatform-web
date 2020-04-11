@@ -126,11 +126,12 @@ export default {
   },
   methods: {
     getList() {
-      this.$axios.post(baseUrl.domain + baseInterface.getCaseInfo, {
-        pageSize: 1
+      this.$axios.post(baseUrl.domain + baseInterface.getAllCase, {
+        currentPage: 1
       }).then(res => {
-        if (res.data.code === 200) {
-          this.dataList = res.data.data
+        if (res.data.code === 20000) {
+          this.dataList = res.data.data.list
+
         }
       })
     },
@@ -148,7 +149,7 @@ export default {
       this.$axios.post(baseUrl.domain + baseInterface.addCase, {
         caseName: this.addCase.caseName
       }).then(res => {
-        if (res.data.code === 200) {
+        if (res.data.code === 20000) {
           this.addCaseSuiteVisible = false
           this.openWarning(res.data.message, 'success')
         } else {
@@ -156,42 +157,17 @@ export default {
         }
       })
     },
-    bindingCaseData(val) {
-      this.currentCaseSuiteId = val.id
-      this.$axios.post(baseUrl.domain + baseInterface.getCaseSuiteInfo, {
-        currentPage: 1
-      }).then(res => {
-        if (res.data.code === 200) {
-          this.caseSuiteData = null
-          console.log(res.data.data)
-          this.dialogTableVisible = true
-          this.caseSuiteData = res.data.data
-          this.len = this.caseSuiteData.length
 
-        } else {
-          this.openWarning(res.data.message, 'error')
-        }
-      })
-
-    },
     /**
      * 根据用例名称查询用例
      */
     selectCaseData() {
-      if (inputDataCheck(this.inputData)) {
-        this.$axios.post(baseUrl.domain + baseInterface.getCaseInfo, {
-          pageSize: 1
-        }).then(res => {
-          this.dataList = res.data.data
-        })
-      } else {
-        this.$axios.post(baseUrl.domain + baseInterface.findCaseInfo, {
-          pageSize: 1,
-          caseName: this.inputData
-        }).then(res => {
-          this.dataList = res.data.data
-        })
-      }
+      this.$axios.post(baseUrl.domain + baseInterface.findCaseInfoByName, {
+        currentPage: 1,
+        caseName: this.inputData
+      }).then(res => {
+        this.dataList = res.data.data
+      })
     },
     /**
      * 修改用例
@@ -205,14 +181,14 @@ export default {
       this.currentUpdateData.description = data.description
     },
     sureModify() {
-      this.$axios.post(baseUrl.domain + baseInterface.updateCaseInfo, {
+      this.$axios.post(baseUrl.domain + baseInterface.updateCase, {
         caseId: this.currentUpdateData.id,
         caseName: this.currentUpdateData.caseName,
         caseSuit: this.currentUpdateData.caseSuite,
         author: this.currentUpdateData.author,
         description: this.description
       }).then(res => {
-        if (res.data.code === 200) {
+        if (res.data.code === 20000) {
           this.Visible = false
           this.openWarning(res.data.message, 'success')
         } else {
@@ -233,10 +209,10 @@ export default {
          * 若拿到提交回调则进行删除操作
          */
         if (action === 'confirm') {
-          this.$axios.post(baseUrl.domain + baseInterface.deleteCaseInfo, {
+          this.$axios.post(baseUrl.domain + baseInterface.deleteCase, {
             caseId: this.currentUpdateData.id
           }).then(res => {
-            if (res.data.code === 200) {
+            if (res.data.code === 20000) {
               this.$message({
                 type: 'success',
                 message: '删除成功!'
@@ -251,8 +227,8 @@ export default {
           /**
          * 删除成功后更新列表
          */
-          this.$axios.post(baseUrl.domain + baseInterface.getCaseInfo, {
-            pageSize: 1
+          this.$axios.post(baseUrl.domain + baseInterface.getAllCase, {
+            currentPage: 1
           }).then(res => {
             this.dataList = res.data.data
           })
@@ -267,26 +243,7 @@ export default {
     changeSwitch(val) {
       console.log(val)
     },
-    /**
-     * 添加用例 =》查询
-     */
-    selectCaseSuite() {
-      if (inputDataCheck(this.packageClassName)) {
-        this.$axios.post(baseUrl.domain + baseInterface.getCaseSuiteInfo, {
-          pageSize: 1
-        }).then(res => {
-          this.caseSuiteData = res.data.data
-        })
-      } else {
-        this.$axios.post(baseUrl.domain + baseInterface.findCaseSuiteInfo, {
-          packageClassName: this.packageClassName
-        }).then(res => {
-          console.log(baseInterface.findCaseSuiteInfo)
-          console.log(res.data.data[0])
-          this.caseSuiteData = res.data.data
-        })
-      }
-    },
+
     /**
      * 添加用例分页展示
      */
