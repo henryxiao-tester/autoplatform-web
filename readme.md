@@ -10,3 +10,6 @@
 1.参考 nodejs 官方文档进行安装：https://nodejs.org/zh-cn/ 
 2.安装完成安装 cnpm 命令：npm install cnpm -g --registry=https://registry.npm.taobao. \n 
 3.执行操作上诉操作完成环境启动
+
+## 3.demo演示地址
+http://101.200.152.183:8080/auto-fe
