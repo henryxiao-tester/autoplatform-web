@@ -1,5 +1,13 @@
 # 自动化测试平台
 
+## 前端技术栈
+1.Vue
+2.axios
+3.ElementUI
+4.vue-echarts
+5.mockjs
+6.vue-router
+
 ## 1.运行
 
 1.cnpm install 下载包依赖  
