@@ -12,9 +12,6 @@ import {
   getUserCenterInfoLists
 } from './mockdata'
 
-const Random = Mock.Random
-Mock.XHR.prototype.withCredentials = true
-
 // mock需要给三个参数,url(与axios请求是传的url一致,我这个是本地启动的项目就直接用本地域名了)
 // 请求类型: get post...其他看文档
 // 数据处理函数,函数需要return数据
