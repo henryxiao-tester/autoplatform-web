@@ -11,7 +11,7 @@
         <el-button type="primary" @click="selectCaseData">查询</el-button>
         <el-button type="primary" @click="addCaseSuite" style="float:right;margin-right:30px">添加用例</el-button>
 
-        <el-table :data="showCaseList" border style="width: 100%">
+        <el-table :data="dataList" border style="width: 100%">
           <el-table-column fixed type="index" label="序号" width="50">
             <template slot-scope="scope">
               <span>{{(caseListPage - 1) * 20 + scope.$index + 1}}</span>
@@ -19,7 +19,7 @@
           </el-table-column>
           <el-table-column fixed prop="id" label="用例ID"></el-table-column>
           <el-table-column fixed prop="caseName" label="用例名称"></el-table-column>
-          <el-table-column fixed prop="caseSuite" label="用例类路径名" :show-overflow-tooltip="true"></el-table-column>
+          <el-table-column fixed prop="classPath" label="用例类路径名" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column fixed prop="description" label="描述信息"></el-table-column>
           <el-table-column fixed prop="author" label="作者"></el-table-column>
           <el-table-column fixed prop="createTime" label="创建时间"></el-table-column>
@@ -50,7 +50,7 @@
             <el-input v-model="currentUpdateData.caseName" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="用例类路径名：" :label-width="formLabelWidth">
-            <el-input v-model="currentUpdateData.caseSuite[0]" auto-complete="off"></el-input>
+            <el-input v-model="currentUpdateData.classPath" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="描述信息：" :label-width="formLabelWidth">
             <el-input v-model="currentUpdateData.description" auto-complete="off"></el-input>
@@ -71,7 +71,7 @@
             <el-input v-model="addCase.caseName" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="用例类路径名：" :label-width="formLabelWidth">
-            <el-input auto-complete="off"></el-input>
+            <el-input v-model="addCase.classPath" auto-complete="off"></el-input>
           </el-form-item>
 
           <el-form-item label="描述信息：" :label-width="formLabelWidth">
@@ -114,13 +114,15 @@ export default {
         id: '',
         caseName: '',
         caseSuite: [],
+        classPath: '',
         author: '',
         description: ''
       },
       addCase: {
         caseName: '',
         description: '',
-        author: ''
+        author: '',
+        classPath: ''
       }
     }
   },
@@ -131,7 +133,6 @@ export default {
       }).then(res => {
         if (res.data.code === 20000) {
           this.dataList = res.data.data.list
-
         }
       })
     },
@@ -147,11 +148,15 @@ export default {
         return null
       }
       this.$axios.post(baseUrl.domain + baseInterface.addCase, {
-        caseName: this.addCase.caseName
+        caseName: this.addCase.caseName,
+        classPath: this.addCase.classPath,
+        author: this.addCase.author,
+        description: this.addCase.description
       }).then(res => {
         if (res.data.code === 20000) {
           this.addCaseSuiteVisible = false
           this.openWarning(res.data.message, 'success')
+          this.getList()
         } else {
           this.openWarning(res.data.message, 'error')
         }
@@ -166,7 +171,15 @@ export default {
         currentPage: 1,
         caseName: this.inputData
       }).then(res => {
-        this.dataList = res.data.data
+        if (res.data.code === 20000) {
+          if (res.data.data === undefined) {
+            this.dataList = []
+          } else {
+            this.dataList = res.data.data.list
+          }
+        } else {
+          this.openWarning(res.data.message, 'error')
+        }
       })
     },
     /**
@@ -176,21 +189,22 @@ export default {
       this.Visible = true
       this.currentUpdateData.id = data.id
       this.currentUpdateData.caseName = data.caseName
-      this.currentUpdateData.caseSuite = data.caseSuite
+      this.currentUpdateData.classPath = data.classPath
       this.currentUpdateData.author = data.author
       this.currentUpdateData.description = data.description
     },
     sureModify() {
       this.$axios.post(baseUrl.domain + baseInterface.updateCase, {
-        caseId: this.currentUpdateData.id,
+        Id: this.currentUpdateData.id,
         caseName: this.currentUpdateData.caseName,
-        caseSuit: this.currentUpdateData.caseSuite,
+        classPath: this.currentUpdateData.classPath,
         author: this.currentUpdateData.author,
-        description: this.description
+        description: this.currentUpdateData.description
       }).then(res => {
         if (res.data.code === 20000) {
           this.Visible = false
           this.openWarning(res.data.message, 'success')
+          this.getList()
         } else {
           this.openWarning(res.data.message, 'error')
         }
@@ -200,6 +214,7 @@ export default {
      * 删除用例
      */
     handleDelete(data) {
+      console.log(data)
       this.$confirm('此操作将删除此用例, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -210,13 +225,14 @@ export default {
          */
         if (action === 'confirm') {
           this.$axios.post(baseUrl.domain + baseInterface.deleteCase, {
-            caseId: this.currentUpdateData.id
+            caseId: data.id
           }).then(res => {
             if (res.data.code === 20000) {
               this.$message({
                 type: 'success',
                 message: '删除成功!'
               })
+              this.getList()
             } else {
               this.$message({
                 type: 'info',

@@ -107,15 +107,26 @@ export const constantRouterMap = [{
     component: Layout,
     redirect: '',
     children: [{
-      path: 'reportList',
-      component: _import('report-manager/pages/index'),
-      name: '报告管理',
-      meta: {
-        title: '报告管理',
-        icon: 'dashboard',
-        noCache: true
+        path: 'reportList',
+        component: _import('report-manager/pages/index'),
+        name: '报告管理',
+        meta: {
+          title: '报告管理',
+          icon: 'dashboard',
+          noCache: true
+        }
+      },
+      {
+        path: 'emailList',
+        component: _import('report-manager/pages/email'),
+        name: '邮件列表',
+        meta: {
+          title: '邮件列表',
+          icon: 'dashboard',
+          noCache: true
+        }
       }
-    }]
+    ]
   },
   {
     path: '/user',
@@ -131,6 +142,32 @@ export const constantRouterMap = [{
         noCache: true
       }
     }]
+  },
+  {
+    path: '/press',
+    component: Layout,
+    redirect: '',
+    children: [{
+        path: 'pressConfig',
+        component: _import('press-manager/pages/index'),
+        name: '压测配置',
+        meta: {
+          title: '压测配置',
+          icon: 'dashboard',
+          noCache: true
+        }
+      },
+      {
+        path: 'pressReport',
+        component: _import('press-manager/pages/report'),
+        name: '压测报告',
+        meta: {
+          title: '压测报告',
+          icon: 'dashboard',
+          noCache: true
+        }
+      }
+    ]
   }, {
     path: '/board',
     component: Layout,
@@ -170,6 +207,11 @@ router.beforeEach((to, from, next) => {
     NProgress.done() // if current page is login will not trigger afterEach hook, so manually handle it
   }
 })
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 /**
  * 导出 基础路由

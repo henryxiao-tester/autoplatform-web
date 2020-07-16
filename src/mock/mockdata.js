@@ -27,7 +27,7 @@ export const getCaseSuiteInfo = function () {
   getCaseSuiteInfoList.length = 0
   for (let index = 0; index < 30; index++) {
     getCaseSuiteInfoList.push({
-      packageName: 'com.auto.interfaceautotest.cases.PrepaymentTestCase',
+      packageName: 'com.auto.interface.cases.LoginTestCase',
       status: 0
     })
 
@@ -36,6 +36,24 @@ export const getCaseSuiteInfo = function () {
 }
 
 // 用例管理用例列表mock数据
+const getAllCaseLists = []
+export const getAllCaseList = function () {
+  getAllCaseLists.length = 0
+  for (let index = 0; index < 30; index++) {
+    getAllCaseLists.push({
+      id: '322231211',
+      caseName: '用户登录模块用例',
+      classPath: ['com.auto.interface.cases.LoginTestCase', 'com.auto.interface.cases.LoginTestCase '],
+      description: '首次录入用户模块',
+      author: 'henry',
+      createTime: '2020-03-23',
+      updateTime: '2020-03-11'
+    })
+
+  }
+  return getAllCaseLists
+}
+
 const getCaseInfoLists = []
 export const getCaseInfoList = function () {
   getCaseInfoLists.length = 0
@@ -43,7 +61,7 @@ export const getCaseInfoList = function () {
     getCaseInfoLists.push({
       id: '322231211',
       caseName: '用户登录模块用例',
-      caseSuite: ['com.auto.interfaceautotest.cases.PrepaymentTestCase', 'com.auto.interfaceautotest.cases.PrepaymentTestCase '],
+      classSuite: ['com.auto.interface.cases.LoginTestCase', 'com.auto.interface.cases.LoginTestCase '],
       description: '首次录入用户模块',
       author: 'henry',
       createTime: '2020-03-23',
@@ -105,4 +123,44 @@ export const getUserCenterInfoLists = function () {
 
   }
   return getUserCenterInfoList
+}
+
+// 邮件列表mock数据
+const getEmailListInfoList = []
+export const getEmailListInfos = function () {
+  getEmailListInfoList.length = 0
+  for (let index = 0; index < 30; index++) {
+    getEmailListInfoList.push({
+      id: 232432432432,
+      emailName: '黄金流任务通知',
+      taskId: 423432432432,
+      noticeObj: ['xiaolong@qq.com', 'henry@qq.com'],
+      type: 1,
+      createTime: '2020-03-25 13:00:00',
+      updateTime: '2020-03-25 13:00:00'
+    })
+
+  }
+  return getEmailListInfoList
+}
+
+// 压测配置列表mock数据
+const getPressListInfoList = []
+export const getPressListInfos = function () {
+  getPressListInfoList.length = 0
+  for (let index = 0; index < 30; index++) {
+    getPressListInfoList.push({
+      id: 232432432432,
+      pressName: '埋点压测',
+      type: 1,
+      status: 1,
+      masterIp: '192.168.1.1',
+      slaveIp: '192.168.1.2,192.168.1.3',
+      scriptStatus: 1,
+      author: 'henryxiao',
+      createTime: '2020-07-07 13:00:00'
+    })
+
+  }
+  return getPressListInfoList
 }

@@ -38,10 +38,30 @@
             <el-menu-item index="/case-manager/caseList">用例列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-        <el-menu-item index="/report-manager/reportList">
-          <i class="el-icon-document"></i>
-          <span slot="title">报告管理</span>
-        </el-menu-item>
+        <el-submenu index="4" @close="index">
+          <template slot="title">
+            <i class="el-icon-document"></i>
+            <span>报告管理</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/report-manager/reportList">报告列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <el-menu-item index="/report-manager/emailList">邮箱列表</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="/press/pressCenter" @close="index">
+          <template slot="title">
+            <i class="el-icon-s-cooperation"></i>
+            <span>压测中心</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/press/pressConfig">压测配置</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <el-menu-item index="/press/pressReport">压测报告</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
         <el-menu-item index="/personalCenter">
           <i class="el-icon-setting"></i>
           <span slot="title">个人中心</span>

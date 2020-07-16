@@ -72,5 +72,25 @@ export const baseInterface = {
   getBoardDataForTaskThree: '/board/getBoardDataForTaskThree',
   getBoardDataForTaskFour: '/board/getBoardDataForTaskFour',
   getBoardDataForTaskFive: '/board/getBoardDataForTaskFive',
-  getBoardDataForTaskSix: '/board/getBoardDataForTaskSix'
+  getBoardDataForTaskSix: '/board/getBoardDataForTaskSix',
+
+  /**
+   * 邮件管理
+   */
+  getEmailListInfo: '/report/getEmailListInfo',
+  deleteEmailInfo: '/report/deleteEmailInfo',
+  updateEmailInfo: '/report/updateEmailInfo',
+  findEmailInfoByName: '/report/findEmailInfoByName',
+  addEmailInfo: '/report/addEmailInfo',
+
+  // 压测中心
+  addPressConfig: '/press/addPressConfig',
+  updatePressConfigById: '/press/updatePressConfigById',
+  deletePressConfigById: '/press/deletePressConfigById',
+  addPressScript: '/press/addPressScript',
+  findPressConfigByName: '/press/findPressConfigByName',
+  findPressConfigList: '/press/findPressConfigList',
+  excutePressScript: '/press/excutePressScript',
+  findPressRecordList: '/press/record/findPressRecordList'
+
 }

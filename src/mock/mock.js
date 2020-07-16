@@ -9,11 +9,11 @@ import {
   getCaseInfoList,
   getUserOperatonInfoLists,
   getReportInfoLists,
-  getUserCenterInfoLists
+  getUserCenterInfoLists,
+  getAllCaseList,
+  getPressListInfos,
+  getEmailListInfos
 } from './mockdata'
-
-const Random = Mock.Random
-Mock.XHR.prototype.withCredentials = true
 
 // mock需要给三个参数,url(与axios请求是传的url一致,我这个是本地启动的项目就直接用本地域名了)
 // 请求类型: get post...其他看文档
@@ -267,7 +267,10 @@ Mock.mock(baseUrl.domain + baseInterface.getAllCase, 'post', (data) => {
   return {
     code: 20000,
     message: 'success',
-    data: getCaseInfoList()
+    data: {
+      list: getAllCaseList()
+    }
+
   }
 })
 
@@ -470,3 +473,235 @@ Mock.mock(baseUrl.domain + baseInterface.getBoardDataForTaskSix, 'post', () => {
     }
   }
 })
+
+/**
+ * 邮件管理
+ */
+Mock.mock(
+  baseUrl.domain + baseInterface.getEmailListInfo,
+  'post',
+  (data) => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success',
+      data: {
+        list: getEmailListInfos(),
+        total: 18
+      }
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.updateEmailInfo,
+  'post',
+  (data) => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success'
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.addEmailInfo,
+  'post',
+  (data) => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success'
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.deleteEmailInfo,
+  'post',
+  (data) => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success'
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.findEmailInfoByName,
+  'post',
+  (data) => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success',
+      data: {
+        list: [{
+          id: 232432432432,
+          emailName: '黄金流任务通知',
+          taskId: 423432432432,
+          noticeObj: ['xiaolong@qq.com', 'henry@qq.com'],
+          type: 1,
+          createTime: '2020-03-25 13:00:00',
+          updateTime: '2020-03-25 13:00:00'
+        }],
+        total: 1
+      }
+    }
+  }
+)
+
+// // 压测中心
+Mock.mock(baseUrl.domain + baseInterface.addPressConfig, 'post', data => {
+  // const info = JSON.parse(data.body)
+  return {
+    code: 20000,
+    message: 'success'
+  }
+})
+
+Mock.mock(
+  baseUrl.domain + baseInterface.excutePressScript,
+  'post',
+  data => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success'
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.deletePressConfigById,
+  'post',
+  data => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success'
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.updatePressConfigById,
+  'post',
+  data => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success'
+    }
+  }
+)
+
+Mock.mock(baseUrl.domain + baseInterface.addPressScript, 'post', data => {
+  // const info = JSON.parse(data.body)
+  return {
+    code: 20000,
+    message: 'success'
+  }
+})
+
+Mock.mock(
+  baseUrl.domain + baseInterface.findPressConfigByName,
+  'post',
+  data => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success',
+      data: {
+        list: [{
+            id: 2221321312321,
+            pressName: '埋点服务压测',
+            type: 0,
+            masterIp: '192.168.1.12',
+            slaveIp: '192.168.1.1,192.168.1.11',
+            scriptStatus: 1,
+            status: 1,
+            author: 'henryxiao',
+            createTime: '2020-03-25 13:00:00',
+            updateTime: '2020-03-25 13:00:00'
+          },
+          {
+            id: 2221321312321,
+            pressName: 'solar服务压测',
+            type: 1,
+            masterIp: '192.168.1.12',
+            slaveIp: '192.168.1.1,192.168.1.11',
+            scriptStatus: 0,
+            status: 0,
+            author: 'henryxiao',
+            createTime: '2020-03-25 13:00:00',
+            updateTime: '2020-03-25 13:00:00'
+          }
+        ],
+        total: 2
+      }
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.findPressConfigList,
+  'post',
+  data => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success',
+      data: {
+        list: getPressListInfos(),
+        total: getPressListInfos().length
+      }
+    }
+  }
+)
+
+Mock.mock(
+  baseUrl.domain + baseInterface.findPressRecordList,
+  'post',
+  data => {
+    // const info = JSON.parse(data.body)
+    return {
+      code: 20000,
+      message: 'success',
+      data: {
+        list: [{
+            id: 2221321312321,
+            pressName: '埋点服务压测',
+            type: 0,
+            masterIp: '192.168.1.12',
+            slaveIp: '192.168.1.1,192.168.1.11',
+            scriptStatus: 1,
+            scriptName: 'dsadsa.jmx',
+            executor: 'henryxiao',
+            status: 1,
+            author: 'henryxiao',
+            createTime: '2020-03-25 13:00:00',
+            updateTime: '2020-03-25 13:00:00'
+          },
+          {
+            id: 2221321312321,
+            pressName: '微服务压测',
+            type: 1,
+            masterIp: '192.168.1.12',
+            slaveIp: '192.168.1.1,192.168.1.11',
+            scriptStatus: 0,
+            scriptName: 'dsadsa.jmx',
+            executor: 'henryxiao',
+            status: 0,
+            author: 'henryxiao',
+            createTime: '2020-03-25 13:00:00',
+            updateTime: '2020-03-25 13:00:00'
+          }
+        ],
+        total: 2
+      }
+    }
+  }
+)

@@ -187,7 +187,7 @@ export function MapTwo(myCharts, datas) {
   myCharts.setOption(option)
   // 监听浏览器缩放，图表对象调用缩放resize函数
   window.addEventListener('resize', function () {
-    myChart.resize()
+    myCharts.resize()
   })
 }
 
@@ -247,7 +247,7 @@ export function MapThree(myCharts, datas) {
   myCharts.setOption(option)
   // 4. 让图表跟随屏幕自动的去适应
   window.addEventListener('resize', function () {
-    myChart.resize()
+    myCharts.resize()
   })
 }
 
@@ -357,7 +357,7 @@ export function MapFour(myCharts, datas) {
   myCharts.setOption(option)
   // 监听浏览器缩放，图表对象调用缩放resize函数
   window.addEventListener('resize', function () {
-    myChart.resize()
+    myCharts.resize()
   })
 }
 
@@ -494,7 +494,7 @@ export function MapFive(myCharts, datas) {
   myCharts.setOption(option)
   // 监听浏览器缩放，图表对象调用缩放resize函数
   window.addEventListener('resize', function () {
-    myChart.resize()
+    myCharts.resize()
   })
 }
 
